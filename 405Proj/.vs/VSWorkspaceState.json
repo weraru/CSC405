@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\src",
+    "\\backend\\src\\dj",
+    "\\frontend",
+    "\\frontend\\whoa",
+    "\\frontend\\whoa\\public",
+    "\\frontend\\whoa\\src"
+  ],
+  "SelectedNode": "\\backend\\src\\dj\\urls.py",
+  "PreviewInSolutionExplorer": false
+}
