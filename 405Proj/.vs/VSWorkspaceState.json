@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\App",
     "\\backend",
     "\\backend\\src",
     "\\backend\\src\\dj",
@@ -9,5 +10,6 @@
     "\\frontend\\whoa\\public",
     "\\frontend\\whoa\\src"
   ],
+  "SelectedNode": "\\App\\Class1.cs",
   "PreviewInSolutionExplorer": false
 }
