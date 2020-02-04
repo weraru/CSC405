@@ -11,5 +11,5 @@ function homePage() {
     </div>
   );
 }
-/* homepage */
+/* homepage test */
 export default homePage;
