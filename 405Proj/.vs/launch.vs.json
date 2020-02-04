@@ -1,0 +1,12 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "dll",
+      "exe": "",
+      "project": "App\\App1\\App1\\App1\\MainPage.xaml",
+      "name": "MainPage.xaml"
+    }
+  ]
+}

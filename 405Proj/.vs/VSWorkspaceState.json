@@ -2,11 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\App",
-    "\\backend",
-    "\\backend\\src",
-    "\\backend\\src\\dj",
-    "\\frontend"
+    "\\App\\App1",
+    "\\App\\App1\\App1",
+    "\\App\\App1\\App1\\App1",
+    "\\App\\App1\\App1\\App1.Android"
   ],
-  "SelectedNode": "\\App",
+  "SelectedNode": "\\App\\App1\\App1.sln",
   "PreviewInSolutionExplorer": false
 }
