@@ -12,8 +12,16 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" AnchorX="0.5" AnchorY="0.5" TextColor="#0B97EB" FontSize="25" />
         <StackLayout Margin="20,35,20,20">
-            <Button Text="Login"
-            Clicked="OnButtonClicked"/>
+            <Button 
+            Text="Login"
+            Clicked="OnButtonClicked"
+            TextColor="Blue"
+            BackgroundColor="Gray"
+            BorderColor="Black"
+            BorderWidth="5"
+            CornerRadius="5"
+            WidthRequest="150"
+            HeightRequest="75"/>
         </StackLayout>
 
     </StackLayout>
