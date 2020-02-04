@@ -5,8 +5,11 @@
     "\\backend",
     "\\backend\\src",
     "\\backend\\src\\dj",
-    "\\frontend"
+    "\\frontend",
+    "\\frontend\\whoa",
+    "\\frontend\\whoa\\public",
+    "\\frontend\\whoa\\src"
   ],
-  "SelectedNode": "\\App",
+  "SelectedNode": "\\App\\Class1.cs",
   "PreviewInSolutionExplorer": false
 }
