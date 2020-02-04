@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import homePage from './homePage';
-import loginPage from './loginPage';
+import SignInSide from './SignInSide';
 import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/" exact component={homePage} />
-          <Route path="/login" component={loginPage} />
+          <Route path="/login" component={SignInSide} />
         </Switch>
       </div>
     </Router>
