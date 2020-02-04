@@ -1911,24 +1911,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Artis\\.nuget\\packages\\": {},
+    "C:\\Users\\10152\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
+      "projectUniqueName": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
       "projectName": "App1.Android",
-      "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
-      "packagesPath": "C:\\Users\\Artis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\obj\\",
+      "projectPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
+      "packagesPath": "C:\\Users\\10152\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Artis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\10152\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1942,8 +1942,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj": {
-              "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj"
+            "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj": {
+              "projectPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj"
             }
           }
         }

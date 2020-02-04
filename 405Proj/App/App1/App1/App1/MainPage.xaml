@@ -11,13 +11,7 @@
         <Label Text="Welcome to GPS tracker!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" AnchorX="0.5" AnchorY="0.5" TextColor="#0B97EB" FontSize="25" />
-        <StackLayout Margin="20,35,20,20">
-            <Button Text="Login"
-            Clicked="OnButtonClicked"/>
-        </StackLayout>
 
     </StackLayout>
-    
-    
 
 </ContentPage>
