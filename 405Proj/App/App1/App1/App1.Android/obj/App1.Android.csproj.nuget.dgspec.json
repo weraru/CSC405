@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj": {}
+    "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj": {
+    "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
+        "projectUniqueName": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
         "projectName": "App1.Android",
-        "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
-        "packagesPath": "C:\\Users\\Artis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\obj\\",
+        "projectPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\App1.Android.csproj",
+        "packagesPath": "C:\\Users\\10152\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Artis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\10152\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj": {
-                "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj"
+              "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj": {
+                "projectPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj"
               }
             }
           }
@@ -58,20 +58,20 @@
         }
       }
     },
-    "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj": {
+    "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
+        "projectUniqueName": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
         "projectName": "App1",
-        "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
-        "packagesPath": "C:\\Users\\Artis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App1\\App1\\App1\\obj\\",
+        "projectPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
+        "packagesPath": "C:\\Users\\10152\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Artis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\10152\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -121,7 +121,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

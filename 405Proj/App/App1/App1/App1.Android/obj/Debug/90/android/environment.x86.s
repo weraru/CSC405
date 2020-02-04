@@ -18,7 +18,7 @@ application_config:
 	/* is_a_bundled_app */
 	.byte	0
 	/* environment_variable_count */
-	.long	12
+	.long	10
 	/* system_property_count */
 	.long	0
 	/* android_package_name */
@@ -61,7 +61,7 @@ mono_aot_mode_name:
 	.section	.rodata..L.str.8,"aMS",@progbits,1
 	.type	.L.str.8, @object
 .L.str.8:
-	.asciz	"82847a37-8fe5-4d49-b022-3a6c38215075"
+	.asciz	"7af0169b-5307-49f8-8a55-976c9f9c0df0"
 	.size	.L.str.8, 37
 	.section	.rodata..L.str.9,"aMS",@progbits,1
 	.type	.L.str.9, @object
@@ -83,16 +83,6 @@ mono_aot_mode_name:
 .L.str.12:
 	.asciz	"btls"
 	.size	.L.str.12, 5
-	.section	.rodata..L.str.13,"aMS",@progbits,1
-	.type	.L.str.13, @object
-.L.str.13:
-	.asciz	"__XA_PACKAGE_NAMING_POLICY__"
-	.size	.L.str.13, 29
-	.section	.rodata..L.str.14,"aMS",@progbits,1
-	.type	.L.str.14, @object
-.L.str.14:
-	.asciz	"LowercaseCrc64"
-	.size	.L.str.14, 15
 	.section	.data.app_environment_variables,"aw",@progbits
 	.type	app_environment_variables, @object
 	.p2align	2
@@ -108,9 +98,7 @@ app_environment_variables:
 	.long	.L.str.10
 	.long	.L.str.11
 	.long	.L.str.12
-	.long	.L.str.13
-	.long	.L.str.14
-	.size	app_environment_variables, 48
+	.size	app_environment_variables, 40
 	.section	.data.app_system_properties,"aw",@progbits
 	.type	app_system_properties, @object
 	.p2align	2

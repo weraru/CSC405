@@ -17,10 +17,5 @@ namespace App1
         {
             InitializeComponent();
         }
-        void OnButtonClicked(object sender, EventArgs e)
-        {
-            (sender as Button).Text = "Detemined to be.";
-        }
     }
-    
 }
