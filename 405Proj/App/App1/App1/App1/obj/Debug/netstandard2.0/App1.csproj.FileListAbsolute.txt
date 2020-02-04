@@ -11,3 +11,16 @@ C:\Users\10152\Source\Repos\App1\App1\App1\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\10152\Source\Repos\App1\App1\App1\obj\Debug\netstandard2.0\App1.dll
 C:\Users\10152\Source\Repos\App1\App1\App1\obj\Debug\netstandard2.0\ref\App1.dll
 C:\Users\10152\Source\Repos\App1\App1\App1\obj\Debug\netstandard2.0\App1.pdb
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\bin\Debug\netstandard2.0\App1.deps.json
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\bin\Debug\netstandard2.0\App1.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\bin\Debug\netstandard2.0\ref\App1.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\bin\Debug\netstandard2.0\App1.pdb
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\App1.csprojAssemblyReference.cache
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\App1.AssemblyInfoInputs.cache
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\App1.AssemblyInfo.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\App1.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\ref\App1.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App1\App1\App1\obj\Debug\netstandard2.0\App1.pdb
