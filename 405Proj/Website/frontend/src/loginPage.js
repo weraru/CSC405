@@ -11,5 +11,5 @@ function loginPage() {
     </div>
   );
 }
-/* homepage */
+/* loginpage test */
 export default loginPage;
