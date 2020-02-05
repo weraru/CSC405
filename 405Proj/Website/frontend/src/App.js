@@ -4,6 +4,8 @@ import homePage from './homePage';
 import SignInSide from './SignInSide';
 import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import createAccountPage from './createAccountPage';
+import forgotPassword from './forgotPassword';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={homePage} />
           <Route path="/login" component={SignInSide} />
+          <Route path="/createaccount" component={createAccountPage} />
+          <Route path="/forgotpassword" component={forgotPassword} />
         </Switch>
       </div>
     </Router>
