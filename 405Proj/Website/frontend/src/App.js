@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import './EmployeeList.css';
 import homePage from './homePage';
 import SignInSide from './SignInSide';
-import EmployeeList from './EmployeeList';
+import Table from './EmployeeList';
 import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={homePage} />
           <Route path="/login" component={SignInSide} />
-          <Route path="/EmployeeList" component={EmployeeList} />
+          <Route path="/EmployeeList" component={Table} />
         </Switch>
       </div>
     </Router>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './EmployeeList.css'
 import './App.css'
@@ -51,15 +51,7 @@ class Table extends Component
     }
     
  }
- ReactDOM.render(React.createElement(Table, null), document.getElementById('root'));
 
- function EmployeeList()
- {  return (
-    <div>
-      <h1> Whatever </h1>
-    </div>
-    
-  );
-    
- }
- export default EmployeeList;
+
+ 
+ export default Table;
