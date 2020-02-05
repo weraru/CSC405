@@ -962,7 +962,7 @@ int drawable ic_mtrl_chip_checked_black 0x7f070062
 int drawable ic_mtrl_chip_checked_circle 0x7f070063
 int drawable ic_mtrl_chip_close_circle 0x7f070064
 int drawable logo 0x7f070065
-int drawable maco 0x7f070066
+int drawable logo2 0x7f070066
 int drawable mtrl_snackbar_background 0x7f070067
 int drawable mtrl_tabs_default_indicator 0x7f070068
 int drawable navigation_empty_icon 0x7f070069

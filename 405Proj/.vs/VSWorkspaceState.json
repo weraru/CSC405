@@ -5,8 +5,9 @@
     "\\App\\App1",
     "\\App\\App1\\App1",
     "\\App\\App1\\App1\\App1",
-    "\\App\\App1\\App1\\App1.Android"
+    "\\App\\App1\\App1\\App1.Android",
+    "\\App\\App1\\App1\\App1\\Pages"
   ],
-  "SelectedNode": "\\App\\App1\\App1.sln",
+  "SelectedNode": "\\App\\App1\\App1\\App1\\Pages\\MainPage.xaml",
   "PreviewInSolutionExplorer": false
 }
