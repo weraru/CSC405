@@ -9,7 +9,7 @@ namespace App1
         public App()
         {
             InitializeComponent();
-            MainPage = new XF_Login.Pages.LoginPage();
+            EmployeeList = new XF_Login.Pages.LoginPage();
             
         }
 

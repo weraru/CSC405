@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import homePage from './homePage';
 import SignInSide from './SignInSide';
+import EmployeeList from './EmployeeList';
 import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={homePage} />
           <Route path="/login" component={SignInSide} />
+          <Route path="/EmployeeList" component={EmployeeList} />
         </Switch>
       </div>
     </Router>
