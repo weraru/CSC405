@@ -4544,7 +4544,7 @@ public final class R {
     public static final int ic_mtrl_chip_checked_circle=0x7f070063;
     public static final int ic_mtrl_chip_close_circle=0x7f070064;
     public static final int logo=0x7f070065;
-    public static final int maco=0x7f070066;
+    public static final int logo2=0x7f070066;
     public static final int mtrl_snackbar_background=0x7f070067;
     public static final int mtrl_tabs_default_indicator=0x7f070068;
     public static final int navigation_empty_icon=0x7f070069;

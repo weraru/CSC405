@@ -5746,7 +5746,7 @@ namespace App1.Droid
 			public const int logo = 2131165285;
 			
 			// aapt resource value: 0x7F070066
-			public const int maco = 2131165286;
+			public const int logo2 = 2131165286;
 			
 			// aapt resource value: 0x7F070067
 			public const int mtrl_snackbar_background = 2131165287;

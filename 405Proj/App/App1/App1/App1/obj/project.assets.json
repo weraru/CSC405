@@ -562,11 +562,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
+      "projectUniqueName": "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
       "projectName": "App1",
-      "projectPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
+      "projectPath": "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App1\\App1\\App1\\App1.csproj",
       "packagesPath": "C:\\Users\\10152\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10152\\Desktop\\CSC405-master\\CSC405\\405Proj\\App\\App1\\App1\\App1\\obj\\",
+      "outputPath": "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App1\\App1\\App1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
