@@ -1,0 +1,131 @@
+07:54:19: Login database connected
+07:54:19: Data succesfully retrieved from login database
+07:54:19: Login database connected
+07:54:19: New UID generated
+07:54:19: New UID returned
+07:54:19: Login database connected
+07:54:19: New User created and committed to database
+07:54:19: Login database connected
+07:54:19: New UID generated
+07:54:19: New UID returned
+08:46:54: Login database connected in Login
+08:46:54: Data succesfully retrieved from login database in Login
+08:46:54: Login database connected
+08:46:54: New UID generated
+08:46:54: New UID returned
+08:46:55: Login database connected
+08:46:55: Failed to create new user
+08:47:06: Login database connected in Login
+08:47:06: Data succesfully retrieved from login database in Login
+08:47:06: Login database connected
+08:47:06: New UID generated
+08:47:06: New UID returned
+08:47:06: Login database connected
+08:47:06: Failed to create new user
+08:48:03: Login database connected in Login
+08:48:03: Data succesfully retrieved from login database in Login
+08:48:03: Login database connected
+08:48:03: New UID generated
+08:48:03: New UID returned
+08:48:04: Login database connected
+08:48:04: Failed to create new user
+08:49:00: Login database connected in Login
+08:49:00: Data succesfully retrieved from login database in Login
+08:49:00: Login database connected
+08:49:00: New UID generated
+08:49:00: New UID returned
+08:49:00: Login database connected
+08:49:00: New User created and committed to database
+08:49:06: Login database connected in Login
+08:49:06: Data succesfully retrieved from login database in Login
+08:49:06: Login database connected
+08:49:06: New UID generated
+08:49:06: New UID returned
+08:49:06: Login database connected
+08:49:06: New User created and committed to database
+08:49:29: Login database connected in Login
+08:49:29: Data succesfully retrieved from login database in Login
+08:49:29: Login database connected
+08:49:29: New UID generated
+08:49:29: New UID returned
+08:49:29: Login database connected
+08:49:29: New User created and committed to database
+08:49:47: Login database connected in Login
+08:49:47: Data succesfully retrieved from login database in Login
+08:49:47: Login database connected
+08:49:47: New UID generated
+08:49:47: New UID returned
+08:49:47: Login database connected
+08:49:47: New User created and committed to database
+08:50:27: Login database connected in Login
+08:50:27: Data succesfully retrieved from login database in Login
+08:50:27: Login database connected
+08:50:27: New UID generated
+08:50:27: New UID returned
+08:50:27: Login database connected
+08:50:27: New User created and committed to database
+08:51:46: Login database connected in Login
+08:51:46: Data succesfully retrieved from login database in Login
+08:51:46: Login database connected
+08:51:46: New UID generated
+08:51:46: New UID returned
+08:51:46: Login database connected
+08:51:46: New User created and committed to database
+08:54:17: Login database connected in Login
+08:54:17: Data succesfully retrieved from login database in Login
+08:54:17: Login database connected
+08:54:17: New UID generated
+08:54:17: New UID returned
+08:54:17: Login database connected
+08:54:17: Failed to create new user
+08:55:00: Login database connected in Login
+08:55:00: Data succesfully retrieved from login database in Login
+08:55:00: Login database connected
+08:55:00: New UID generated
+08:55:00: New UID returned
+08:55:00: Login database connected
+08:55:00: Failed to create new user
+08:55:19: Login database connected in Login
+08:55:19: Data succesfully retrieved from login database in Login
+08:55:19: Login database connected
+08:55:19: New UID generated
+08:55:19: New UID returned
+08:55:19: Login database connected
+08:55:19: Failed to create new user
+08:56:11: Login database connected in Login
+08:56:11: Data succesfully retrieved from login database in Login
+08:56:11: Login database connected
+08:56:11: New UID generated
+08:56:11: New UID returned
+08:56:11: Login database connected
+08:56:11: Failed to create new user
+08:57:17: Login database connected in Login
+08:57:17: Data succesfully retrieved from login database in Login
+08:57:17: Login database connected
+08:57:17: New UID generated
+08:57:17: New UID returned
+08:57:18: Login database connected
+08:58:25: Login database connected in Login
+08:58:25: Data succesfully retrieved from login database in Login
+08:58:25: Login database connected
+08:58:25: New UID generated
+08:58:25: New UID returned
+08:58:25: Login database connected
+08:58:25: New User created and committed to database
+08:58:39: Login database connected in Login
+08:58:39: Data succesfully retrieved from login database in Login
+08:58:39: Login database connected
+08:58:39: New UID generated
+08:58:39: New UID returned
+08:58:39: Login database connected
+08:58:39: Invalid username
+08:58:57: Login database connected in Login
+08:58:57: Data succesfully retrieved from login database in Login
+08:58:57: Login database connected
+08:58:57: New UID generated
+08:58:57: New UID returned
+08:58:57: Login database connected
+08:58:57: New User created and committed to database
+09:11:33: Login database connected
+09:12:55: Login database connected
+09:13:57: Login database connected
