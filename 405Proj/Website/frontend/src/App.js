@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import './EmployeeList.css';
 import homePage from './homePage';
@@ -10,10 +10,16 @@ import forgotPassword from './forgotPassword';
 import Table from './EmployeeList'
 
 function App() {
+  useEffect(() => {
+    fetch("/employees").then(response => 
+      response.json().then(data => {
+        console.log(data)
+    })
+    );
+  }, []);
   return (
-
     <Router>
-      <div className="App">
+;      <div className="App">
         <Nav />
         <Switch>
           <Route path="/" exact component={homePage} />
