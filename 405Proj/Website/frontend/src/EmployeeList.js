@@ -3,12 +3,13 @@ import logo from './logo.svg';
 import './EmployeeList.css'
 import './App.css'
 
+//List of Employees will be stored in this table
 class Table extends Component 
 {
     constructor(props) 
     {
-       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
-       this.state = { //state is by default an object
+       super(props) 
+       this.state = { 
           employees: [
              { id: 1, name: 'Bob'},
              { id: 2, name: 'Hank'},
