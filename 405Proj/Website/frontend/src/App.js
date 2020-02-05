@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import './EmployeeList.css';
 import homePage from './homePage';
 import SignInSide from './SignInSide';
 import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import createAccountPage from './createAccountPage';
 import forgotPassword from './forgotPassword';
+import Table from './EmployeeList'
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/login" component={SignInSide} />
           <Route path="/createaccount" component={createAccountPage} />
           <Route path="/forgotpassword" component={forgotPassword} />
+          <Route path="/EmployeeList" component={Table}/>
         </Switch>
       </div>
     </Router>
