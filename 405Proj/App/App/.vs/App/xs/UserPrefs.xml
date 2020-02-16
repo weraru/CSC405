@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{0DCE76F8-0171-4DAB-8479-FFEDB8F846E8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="App/Pages/ProfilePage.xaml">
+    <Files>
+      <File FileName="App/Pages/MainPage.xaml.cs" Line="39" Column="41" />
+      <File FileName="App/ViewModels/MainViewModel.cs" Line="17" Column="39" />
+      <File FileName="App/Pages/MainPage.xaml" Line="12" Column="68" />
+      <File FileName="App/ViewModels/LoginViewModel.cs" Line="44" Column="74" />
+      <File FileName="App/Network/HttpCall.cs" Line="16" Column="29" />
+      <File FileName="App/Pages/ProfilePage.xaml" Line="28" Column="68" />
+      <File FileName="App/Pages/LoginPage.xaml" Line="20" Column="47" />
+      <File FileName="App/Pages/ProfilePage.xaml.cs" Line="17" Column="40" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="App" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.App.iOS FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.App.Android PreferredExecutionTarget="Android.pixel_2_pie_9_0_-_api_28" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.ProfilePage"
+             BackgroundImage="logo.jpg">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+            <BoxView HeightRequest="10"/>
+            <Label TextColor="White" Text="Edit Profile" HorizontalOptions="Center" FontSize="Large"/>
+            <Frame BackgroundColor="#BF043055" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Name" Text="{Binding FirstName}" Placeholder="First Name"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           TextColor="White"/>
+                    <Entry x:Name="MidName" Text="{Binding MiddleName}" Placeholder="Middle Name"   
+                           PlaceholderColor="White" HeightRequest="40"  
+                           TextColor="White"/>
+                    <Entry x:Name="LastName" Text="{Binding LastName}" Placeholder="Last Name"   
+                           PlaceholderColor="White" HeightRequest="40"  
+                           TextColor="White"/>
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password"   
+                           PlaceholderColor="White" HeightRequest="40"  
+                           TextColor="White"/>
+                    <Entry x:Name="Address" Text="{Binding Address}" Placeholder="Address"   
+                           PlaceholderColor="White" HeightRequest="40"  
+                           TextColor="White"/>
+                    <Label Text="Date of Birth" TextColor="White"/>
+                    <DatePicker TextColor="White" />
+                </StackLayout>
+            </Frame>
+            <Button Text="Save" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="#088da5" Clicked="Button_Clicked" />
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
