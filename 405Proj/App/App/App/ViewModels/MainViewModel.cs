@@ -15,6 +15,7 @@ namespace App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public ICommand ProfileCommand { protected set; get; }
+        public ICommand BreakCommand { protected set; get; }
 
         public string Onbreak = "No";
 
@@ -25,6 +26,7 @@ namespace App.ViewModels
         public MainViewModel()
         {
             ProfileCommand = new Command(OnProfileClicked);
+            BreakCommand = new Command(OnBreakClicked);
             LatLonCollection = new ObservableCollection<LatLon>();
             aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedGetLocationEvent);
@@ -35,10 +37,17 @@ namespace App.ViewModels
             EnableTimers(true);
         }
 
+        private void OnBreakClicked(object obj)
+        {
+            Obreak();
+        }
+
         private async void OnProfileClicked(object obj)
         {
             await App.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
         }
+ 
+        
 
         internal void EnableTimers(bool b)
         {
@@ -47,7 +56,7 @@ namespace App.ViewModels
         }
         private void OnTimedGetLocationEvent(object sender, ElapsedEventArgs e)
         {
-            if (Onbreak=="No")
+            if (Onbreak == "No")
                 try
                 {
                     Device.BeginInvokeOnMainThread(async () =>
@@ -99,6 +108,20 @@ namespace App.ViewModels
             {
                 _LatLonCollection = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("LatLonCollection"));
-            } }
+            }
+        }
+        public void Obreak()
+        {
+            if (Onbreak == "No")
+            {
+                Onbreak = "Yes";
+            }
+            else
+            {
+                Onbreak = "No";
+            }
+        }
     }
 }
+  
+

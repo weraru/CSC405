@@ -21,7 +21,9 @@
                 BorderWidth="5"
                 CornerRadius="5"
                 WidthRequest="150"
-                HeightRequest="75" />
+                HeightRequest="75" 
+                Command="{Binding Obreak}"
+                />
         <ListView  ItemsSource="{Binding LatLonCollection}"
                    SelectionMode="None"
                    SeparatorColor="White"

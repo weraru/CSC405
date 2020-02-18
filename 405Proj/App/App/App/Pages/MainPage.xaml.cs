@@ -24,7 +24,7 @@ namespace App
             
             var VM = new MainViewModel();
             this.BindingContext = VM;
-
+            
 
         }
         void OnButtonClicked(object sender, EventArgs e)
@@ -33,13 +33,12 @@ namespace App
             if ((sender as Button).Text != "On Break")
             {
                 (sender as Button).Text = "On Break";
-                Onbreak = "Yes";
             }
 
             else
             {
                 (sender as Button).Text = "Break";
-                Onbreak = "No";
+               
             }
         }
         
