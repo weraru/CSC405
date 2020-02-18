@@ -1,19 +1,24 @@
 ﻿<Properties StartupConfiguration="{0DCE76F8-0171-4DAB-8479-FFEDB8F846E8}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="App/Pages/ProfilePage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="App/ViewModels/MainViewModel.cs">
     <Files>
-      <File FileName="App/Pages/MainPage.xaml.cs" Line="39" Column="41" />
-      <File FileName="App/ViewModels/MainViewModel.cs" Line="17" Column="39" />
-      <File FileName="App/Pages/MainPage.xaml" Line="12" Column="68" />
-      <File FileName="App/ViewModels/LoginViewModel.cs" Line="44" Column="74" />
-      <File FileName="App/Network/HttpCall.cs" Line="16" Column="29" />
-      <File FileName="App/Pages/ProfilePage.xaml" Line="28" Column="68" />
-      <File FileName="App/Pages/LoginPage.xaml" Line="20" Column="47" />
-      <File FileName="App/Pages/ProfilePage.xaml.cs" Line="17" Column="40" />
+      <File FileName="App/Pages/MainPage.xaml" Line="17" Column="48" />
+      <File FileName="App/Pages/MainPage.xaml.cs" Line="43" Column="10" />
+      <File FileName="App/App.xaml.cs" />
+      <File FileName="App/ViewModels/MainViewModel.cs" Line="68" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="App" selected="True" />
+          <Node name="App" expanded="True">
+            <Node name="App" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="MainPage.xaml" expanded="True" />
+              </Node>
+              <Node name="ViewModels" expanded="True">
+                <Node name="MainViewModel.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

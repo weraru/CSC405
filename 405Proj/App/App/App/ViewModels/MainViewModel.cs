@@ -17,11 +17,10 @@ namespace App.ViewModels
         public ICommand ProfileCommand { protected set; get; }
         public ICommand BreakCommand { protected set; get; }
 
-        public string Onbreak = "No";
-
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
+        private string _BreakText = "Break";
 
         public MainViewModel()
         {
@@ -38,16 +37,23 @@ namespace App.ViewModels
         }
 
         private void OnBreakClicked(object obj)
-        { 
-            Obreak();
+        {
+            if (BreakText != "On Break")
+            {
+                BreakText = "On Break";
+                EnableTimers(false);
+            }
+            else
+            {
+                BreakText = "Break";
+                EnableTimers(true);
+            }
         }
 
         private async void OnProfileClicked(object obj)
         {
             await App.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
         }
- 
-        
 
         internal void EnableTimers(bool b)
         {
@@ -56,41 +62,41 @@ namespace App.ViewModels
         }
         private void OnTimedGetLocationEvent(object sender, ElapsedEventArgs e)
         {
-            if (Onbreak == "No")
-                try
-                {
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                        var location = await Geolocation.GetLocationAsync(request);
 
-                        if (location != null)
-                        {
-                            LatLonCollection.Insert(0, new LatLon { Latitude = location.Latitude.ToString(), Longitude = location.Longitude.ToString() });
-                            Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                        }
-                    });
-                }
-                catch (FeatureNotSupportedException fnsEx)
+            try
+            {
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    // Handle not supported on device exception
-                    Console.WriteLine(fnsEx.Message);
-                }
-                catch (FeatureNotEnabledException fneEx)
-                {
-                    // Handle not enabled on device exception
-                    Console.WriteLine(fneEx.Message);
-                }
-                catch (PermissionException pEx)
-                {
-                    // Handle permission exception
-                    Console.WriteLine(pEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    // Unable to get location
-                    Console.WriteLine(ex.Message);
-                }
+                    var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                    var location = await Geolocation.GetLocationAsync(request);
+
+                    if (location != null)
+                    {
+                        LatLonCollection.Insert(0, new LatLon { Latitude = location.Latitude.ToString(), Longitude = location.Longitude.ToString() });
+                        Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    }
+                });
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+                Console.WriteLine(fnsEx.Message);
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+                Console.WriteLine(fneEx.Message);
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+                Console.WriteLine(pEx.Message);
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+                Console.WriteLine(ex.Message);
+            }
 
         }
         private async void OnTimedHttpCallEvent(object sender, ElapsedEventArgs e)
@@ -110,18 +116,14 @@ namespace App.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("LatLonCollection"));
             }
         }
-        public void Obreak()
+        public string BreakText
         {
-            if (Onbreak == "No")
+            get { return _BreakText; }
+            set
             {
-                Onbreak = "Yes";
-            }
-            else
-            {
-                Onbreak = "No";
+                _BreakText = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("BreakText"));
             }
         }
     }
 }
-  
-

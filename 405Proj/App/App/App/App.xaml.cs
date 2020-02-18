@@ -10,8 +10,19 @@ namespace App
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new LoginPage());
+            if(!Current.Properties.ContainsKey("LogoutTime"))
+                MainPage = new NavigationPage(new LoginPage());
+            else
+            {
+                if((TimeSpan)Current.Properties["LogoutTime"] < DateTime.Now.TimeOfDay)
+                {
+                    MainPage = new NavigationPage(new LoginPage());
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new MainPage());
+                }
+            }
         }
 
         protected override void OnStart()

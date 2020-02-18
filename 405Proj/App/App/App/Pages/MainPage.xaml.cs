@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using App.Pages;
 using App.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
@@ -16,34 +17,28 @@ namespace App
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        
+        private Timer timer;
 
         public MainPage()
         {
             InitializeComponent();
-            
-            var VM = new MainViewModel();
-            this.BindingContext = VM;
-            
+            BindingContext = new MainViewModel();
+            timer = new System.Timers.Timer();
+            timer.Interval = 60000;
+
+            timer.Elapsed += OnTimedEvent;
+            timer.Enabled = true;
 
         }
-        void OnButtonClicked(object sender, EventArgs e)
+
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            var VM = new MainViewModel();
-            this.BindingContext = VM;
-
-        
-
-            if ((sender as Button).Text != "On Break")
+            if (App.Current.Properties.ContainsKey("LogoutTime"))
             {
-                (sender as Button).Text = "On Break";
-                VM.Obreak();
-            }
-
-            else
-            {
-                (sender as Button).Text = "Break";
-
+                if ((TimeSpan)App.Current.Properties["LogoutTime"] < DateTime.Now.TimeOfDay)
+                {
+                    App.Current.MainPage = new NavigationPage(new LoginPage());
+                }
             }
         }
         
@@ -84,6 +79,15 @@ namespace App
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        void OnSaved_Clicked(System.Object sender, System.EventArgs e)
+        {
+            if(TP.Time != null)
+            {
+                App.Current.Properties["LogoutTime"] = TP.Time;
+                App.Current.SavePropertiesAsync();
             }
         }
     }
