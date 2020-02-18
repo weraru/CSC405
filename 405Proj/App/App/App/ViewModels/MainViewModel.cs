@@ -16,6 +16,8 @@ namespace App.ViewModels
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public ICommand ProfileCommand { protected set; get; }
 
+        public string Onbreak = "No";
+
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
@@ -45,41 +47,41 @@ namespace App.ViewModels
         }
         private void OnTimedGetLocationEvent(object sender, ElapsedEventArgs e)
         {
-
-            try
-            {
-                Device.BeginInvokeOnMainThread(async () =>
+            if (Onbreak=="No")
+                try
                 {
-                    var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                    var location = await Geolocation.GetLocationAsync(request);
-
-                    if (location != null)
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        LatLonCollection.Insert(0, new LatLon { Latitude = location.Latitude.ToString(), Longitude = location.Longitude.ToString() });
-                        Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                    }
-                });
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-                Console.WriteLine(fnsEx.Message);
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-                Console.WriteLine(fneEx.Message);
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-                Console.WriteLine(pEx.Message);
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-                Console.WriteLine(ex.Message);
-            }
+                        var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                        var location = await Geolocation.GetLocationAsync(request);
+
+                        if (location != null)
+                        {
+                            LatLonCollection.Insert(0, new LatLon { Latitude = location.Latitude.ToString(), Longitude = location.Longitude.ToString() });
+                            Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                        }
+                    });
+                }
+                catch (FeatureNotSupportedException fnsEx)
+                {
+                    // Handle not supported on device exception
+                    Console.WriteLine(fnsEx.Message);
+                }
+                catch (FeatureNotEnabledException fneEx)
+                {
+                    // Handle not enabled on device exception
+                    Console.WriteLine(fneEx.Message);
+                }
+                catch (PermissionException pEx)
+                {
+                    // Handle permission exception
+                    Console.WriteLine(pEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    // Unable to get location
+                    Console.WriteLine(ex.Message);
+                }
 
         }
         private async void OnTimedHttpCallEvent(object sender, ElapsedEventArgs e)

@@ -16,20 +16,31 @@ namespace App
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        
 
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
             
+            var VM = new MainViewModel();
+            this.BindingContext = VM;
+
 
         }
         void OnButtonClicked(object sender, EventArgs e)
         {
-            if((sender as Button).Text != "On Break")
+
+            if ((sender as Button).Text != "On Break")
+            {
                 (sender as Button).Text = "On Break";
+                Onbreak = "Yes";
+            }
+
             else
+            {
                 (sender as Button).Text = "Break";
+                Onbreak = "No";
+            }
         }
         
         
