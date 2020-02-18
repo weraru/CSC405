@@ -38,7 +38,7 @@ namespace App.ViewModels
         }
 
         private void OnBreakClicked(object obj)
-        {
+        { 
             Obreak();
         }
 

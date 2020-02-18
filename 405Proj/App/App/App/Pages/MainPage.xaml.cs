@@ -29,16 +29,21 @@ namespace App
         }
         void OnButtonClicked(object sender, EventArgs e)
         {
+            var VM = new MainViewModel();
+            this.BindingContext = VM;
+
+        
 
             if ((sender as Button).Text != "On Break")
             {
                 (sender as Button).Text = "On Break";
+                VM.Obreak();
             }
 
             else
             {
                 (sender as Button).Text = "Break";
-               
+
             }
         }
         
