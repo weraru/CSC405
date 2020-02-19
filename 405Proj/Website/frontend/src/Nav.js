@@ -11,7 +11,8 @@ function Nav() {
 
   return (
     <nav>
-        <h3>Logo</h3>
+        <h1>Watchmen
+        </h1> 
         <ul className ="nav-Links">
             <Link style={navStyle} to='/' exact>
             <li>Home</li>
