@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './EmployeeList.css'
 import './App.css'
+import './NewEmployee'
 import { ThemeProvider } from '@material-ui/core';
 
 class Table extends Component 
@@ -19,7 +20,7 @@ class Table extends Component
     }
 
     getItems(){
-      fetch("/employees").then(response => response.json())
+      fetch( "/employees").then(response => response.json())
       .then(response => this.setState({employees: response}));
     }
 
@@ -51,7 +52,7 @@ class Table extends Component
      {
         return (
           React.createElement("div", null,
-          React.createElement("h1", { id: "title" }, "Employees"),
+          React.createElement("h2", { id: "title" }, "Employees"),
           React.createElement("table", { id: "employee" },
           React.createElement("tbody", null,
           React.createElement("tr", null, this.renderTableHeader()),

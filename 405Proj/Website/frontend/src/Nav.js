@@ -19,7 +19,7 @@ function Nav() {
             <Link style={navStyle} to ='/login'>
             <li>Login</li>
             </Link>
-            <Link style={navStyle} to ='/EmployeeList'>
+            <Link style={navStyle} to ='/EmployeePage'>
             <li>Employees</li>
             </Link>
         </ul>
