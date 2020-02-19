@@ -6,40 +6,64 @@ class NewEmployee extends Component {
         super(props)
 
         this.state = {
-            usrname: '',
+            name: '',
             email: ''
         }
 
     }
 
     changeHandler = (e) => {
-        this.setState({ [e.target.usrname]: e.target.value })
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    addHandler = e => {
+
+
+
+
+
+    submitHandler = e => {
         e.preventDefault()
         console.log(this.state)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        var raw = JSON.stringify(this.state);
+    
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+        fetch('/add', requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
     }
 
+
     renderForm() {
-        const { usrname, email } = this.state
+        const { name, email } = this.state
         return (
-            <form onAdd ={this.addHandler} >
-                <div>
-                    < input type = "text"
-                    name = "usrname"
-                    value = {usrname}
+            <form onSubmit={this.submitHandler}>
+                <div id = "box">
+                    < input id = "font" type = "text"
+                    name = "name"
+                    value = {name}
                     onChange = {this.changeHandler}
-                    placeholder = 'username here'
+                   // placeholder = 'username here'
+                    
                     />
                 </div>
-                <div>
+                <div id = "box">
                     <input type="text" 
                     name="email" value={email} 
                     onChange={this.changeHandler}
-                    placeholder = 'email here'/>
+                    //placeholder = 'email here'
+                    id = 'font'
+                    />
                 </div>
-                <button type="Add">Add</button>
+                <button id="butt" type="Add">Add</button>
             </form>
         )
     }
