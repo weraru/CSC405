@@ -57,7 +57,7 @@ def employee(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT * FROM tbl_employee WHERE employee_id=%s", id)
+        cursor.execute("SELECT * FROM tbl_employee WHERE employee_id= %s", id)
         row = cursor.fetchone()
         resp = jsonify(row)
         resp.status_code = 200
