@@ -5,7 +5,7 @@ import homePage from './homePage';
 import SignInSide from './SignInSide';
 import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import createAccountPage from './createAccountPage';
+import SignUp from './SignUp';
 import forgotPassword from './forgotPassword';
 import Table from './EmployeeList'
 
@@ -24,7 +24,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={homePage} />
           <Route path="/login" component={SignInSide} />
-          <Route path="/createaccount" component={createAccountPage} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/forgotpassword" component={forgotPassword} />
           <Route path="/EmployeeList" component={Table}/>
         </Switch>

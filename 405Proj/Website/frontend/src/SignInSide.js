@@ -117,7 +117,7 @@ export default function SignInSide() {
               </Link>
               </Grid>
               <Grid item>
-              <Link to ='/forgotpassword'>
+              <Link to ='/signup'>
             <li>Don't have an account? Sign Up</li>
               </Link>
               </Grid>
