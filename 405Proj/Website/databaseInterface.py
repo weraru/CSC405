@@ -1,6 +1,9 @@
 import MySQLdb
 from datetime import datetime
 import bcrypt
+from flask import Flask
+from flask import jsonify, request
+app = Flask(__name__)
 #establish variables
 
 
@@ -45,21 +48,18 @@ def Login(UserID, Password):
             PW=data[2]
             SALT=data[3]
             database.close()
+            #Communicate with website results
+            validateLogin = verify(Password,SALT,PW,UID)
             Log("Data succesfully retrieved from login database in Login")
+            return validateLogin
+            
         except:
             Log("Data failed to retrieve from login database in Login")
             
     except:
         Log("Login database failed to connect in Login")
         
-#Communicate with website results
-    #validateLogin = verify(Password,SALT,PW,UID)
-    #if (validateLogin == True):
-        #print("Validated")
-        #allow access
-    #else:
-        #print("Denied")
-        #deny acess
+
 
 def getNewUID():
     try:
@@ -120,6 +120,51 @@ def changePassword(username, newpass):
     database.commit()
     database.close()
     
+Log("entering main")
+#################MAIN############################################
+@app.route("/login", methods = ['POST'])
+def netLogin():
+    Log("in app")
+    cursor = None
+    conn = None
+    try:
+        Log("in try")
+        _json = request.json
+        _username = _json['username']
+        _password = _json['password']
+
+        if _username and _password and request.method == 'POST':
+            result = Login(_username,_password)
+            if result == True:
+                resp=jsonify('Login Verified')
+                resp.status_code = 200
+                return resp
+            else:
+                resp=jsonify('Login Denied')
+                resp.status_code = 200
+                return resp
+        else:
+            print("wrong format")
+
+    except Exception as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ######DEBUGGING##########
 #Login("Geralt","password123")

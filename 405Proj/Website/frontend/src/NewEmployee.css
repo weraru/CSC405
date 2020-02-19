@@ -1,0 +1,25 @@
+#head{
+    float: left;
+}
+
+#box{
+    display: inline-block;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border-top: 3px solid #ddd;
+    border-bottom: 3px solid #ddd;
+    border-right: 5px solid #ddd;
+}
+
+#butt{
+    display: inline-block;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border-top: 5px solid #ddd;
+    border-bottom: 5px solid #ddd;
+    border-right: 2px solid #ddd;
+}
+
+#font{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
