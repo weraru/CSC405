@@ -1,0 +1,15 @@
+C:\Users\10152\Desktop\Project\App\App\bin\Debug\netstandard2.0\App.deps.json
+C:\Users\10152\Desktop\Project\App\App\bin\Debug\netstandard2.0\App.dll
+C:\Users\10152\Desktop\Project\App\App\bin\Debug\netstandard2.0\ref\App.dll
+C:\Users\10152\Desktop\Project\App\App\bin\Debug\netstandard2.0\App.pdb
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.csprojAssemblyReference.cache
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\Pages\LoginPage.xaml.g.cs
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\Pages\MainPage.xaml.g.cs
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\Pages\ProfilePage.xaml.g.cs
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.AssemblyInfoInputs.cache
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.AssemblyInfo.cs
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.dll
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\ref\App.dll
+C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.pdb

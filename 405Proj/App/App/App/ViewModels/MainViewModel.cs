@@ -17,6 +17,7 @@ namespace App.ViewModels
         public ICommand ProfileCommand { protected set; get; }
         public ICommand BreakCommand { protected set; get; }
 
+
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
