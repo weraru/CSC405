@@ -20,6 +20,10 @@
     border-right: 2px solid #ddd;
 }
 
-#font{
+#font1{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#font2{
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }

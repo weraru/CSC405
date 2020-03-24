@@ -47,7 +47,7 @@ class NewEmployee extends Component {
         return (
             <form onSubmit={this.submitHandler}>
                 <div id = "box">
-                    < input id = "font" type = "text"
+                    < input id = "font1" type = "text"
                     name = "name"
                     value = {name}
                     onChange = {this.changeHandler}
@@ -60,7 +60,7 @@ class NewEmployee extends Component {
                     name="email" value={email} 
                     onChange={this.changeHandler}
                     //placeholder = 'email here'
-                    id = 'font'
+                    id = 'font2'
                     />
                 </div>
                 <button id="butt" type="Add">Add</button>

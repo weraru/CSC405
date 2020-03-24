@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './EmployeeList.css'
-import './App.css'
-import './NewEmployee'
+//import './EmployeeList.css'
+import './App.css';
+import './NewEmployee';
 import { ThemeProvider } from '@material-ui/core';
+import ReactTable from "react-table-6";
+import 'react-table-6/react-table.css';
 
 class Table extends Component 
 {
     constructor(props) 
     {
-       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
-       this.state = { //state is by default an object
-          employees: []
+       super(props) 
+       this.state = { 
+         employees: []
        }
     }
 
@@ -25,13 +27,12 @@ class Table extends Component
     }
 
 
-    renderTableHeader() {
+/*     renderTableHeader() {
         let header = ["id", "name", "email"];
         return header.map((key, index) => {
           return React.createElement("th", { key: index }, key.toUpperCase());
         });
       }
-
 
  
     renderTableData() 
@@ -46,18 +47,42 @@ class Table extends Component
               </tr>
            )
         })
-     }
+     } */
   
      render() 
      {
-        return (
-          React.createElement("div", null,
-          React.createElement("h2", { id: "title" }, "Employees"),
-          React.createElement("table", { id: "employee" },
-          React.createElement("tbody", null,
-          React.createElement("tr", null, this.renderTableHeader()),
-          this.renderTableData()))));
-    }
+         //const { data } = this.state.employees;
+         return (
+           <div>
+             <ReactTable
+               data = { this.state.employees }
+               columns={[
+                  {
+                    Header: "ID",
+                    accessor: "employee_id"  
+                  },
+                  {
+                   Header: "Name",
+                   accessor: "employee_name"
+                  
+                 },
+                 {
+                   Header: "Email",
+                   accessor: "employee_email"
+                 
+                 }
+               ]}
+               defaultPageSize={20}
+               style={{
+                 height: "400px" // This will force the table body to overflow and scroll, since there is not enough room
+               }}
+               className="-striped -highlight"
+             />
+             <br />
+           </div>
+         );
+       }
+      
     
  }
 

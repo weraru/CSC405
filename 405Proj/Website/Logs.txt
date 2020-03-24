@@ -129,3 +129,11 @@
 09:11:33: Login database connected
 09:12:55: Login database connected
 09:13:57: Login database connected
+12:44:06: entering main
+12:47:30: in app
+12:47:30: in try
+12:47:32: Failed to connect to login database in getNewUID()
+12:47:32: Failed to create new user
+12:48:09: in app
+12:48:09: in try
+12:48:09: Login database failed to connect in Login
