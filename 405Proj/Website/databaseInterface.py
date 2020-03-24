@@ -140,11 +140,11 @@ def netLogin():
         if _username and _password and request.method == 'POST':
             result = Login(_username,_password)
             if result == True:
-                resp=jsonify('Login Verified')
+                resp=jsonify('Granted')
                 resp.status_code = 200
                 return resp
             else:
-                resp=jsonify('Login Denied')
+                resp=jsonify('Denied')
                 resp.status_code = 200
                 return resp
         else:
@@ -179,12 +179,36 @@ def netCreateUser():
         print(e)
 
 
+###
+@app.route("/gpsdata", methods = ['POST'])
+def datalog():
+    Log("in log")
+    cursor = None
+    conn = None
+    try:
+        Log("in try")
+        _json = request.json
+        _uid=_json['uid']
+        _long = _json['long']
+        _lat = _json['lat']
+
+        if _uuid and _long and _lat and request.method == 'POST':
+            database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
+            Log("Login database connected")
+            query=database.cursor()
+            query.execute(("INSERT INTO gpsdata ('uid' , 'lat', 'longitude', 'time') VALUES ( {}, {}, {}, 0);").format(_uid,_lat,_long))
+        else:
+            resp =jsonify("wrong format")
+            return resp
+
+    except Exception as e:
+        print(e)
 
 
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5005)
 
 
 
