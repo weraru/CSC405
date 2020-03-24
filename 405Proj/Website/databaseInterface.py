@@ -23,7 +23,7 @@ def timestamp():
 #hash and return and verify
 
 def verify(password, salt, dbstored, UID):
-    word = bcrypt.hashpw(password,salt)
+    word = bcrypt.hashpw(str(password),salt)
     if word == dbstored:
         return True
         Log("User {} granted access.".format(UID))
@@ -50,10 +50,12 @@ def Login(UserID, Password):
             database.close()
             #Communicate with website results
             validateLogin = verify(Password,SALT,PW,UID)
+            print(validateLogin)
             Log("Data succesfully retrieved from login database in Login")
             return validateLogin
             
-        except:
+        except Exception as e:
+            print(e)
             Log("Data failed to retrieve from login database in Login")
             
     except:
@@ -85,13 +87,14 @@ def createUser(username, password):
     try:
         salt = bcrypt.gensalt()
         UID=getNewUID()
-        storedPass=str(bcrypt.hashpw(password,salt))
+        storedPass=str(bcrypt.hashpw(str(password),salt))
         database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
         Log("Login database connected")
         query=database.cursor()
         query.execute(("SELECT Username FROM login;"))
         data = query.fetchone()
         dup=False
+        print("executed first")
         while data is not None:
             data=query.fetchone()
             name = str(query.fetchone())
@@ -107,7 +110,8 @@ def createUser(username, password):
             database.commit()
             Log("New User created and committed to database")
         database.close()
-    except:
+    except Exception as e:
+        print(e)
         Log("Failed to create new user")
     
 def changePassword(username, newpass):
@@ -144,10 +148,39 @@ def netLogin():
                 resp.status_code = 200
                 return resp
         else:
-            print("wrong format")
+            resp =jsonify("wrong format")
+            return resp
 
     except Exception as e:
         print(e)
+
+@app.route("/createUser", methods = ['POST'])
+def netCreateUser():
+    Log("in app")
+    cursor = None
+    conn = None
+    try:
+        Log("in try")
+        _json = request.json
+        _username = _json['username']
+        _password = _json['password']
+
+        if _username and _password and request.method == 'POST':
+            createUser(_username,_password)
+            
+            resp=jsonify('User Created')
+            resp.status_code = 200
+            return resp
+        else:
+            resp =jsonify("wrong format")
+            return resp
+
+    except Exception as e:
+        print(e)
+
+
+
+
 
 
 if __name__ == "__main__":
