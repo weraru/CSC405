@@ -188,15 +188,19 @@ def datalog():
     try:
         Log("in try")
         _json = request.json
-        _uid=_json['uid']
-        _long = _json['long']
-        _lat = _json['lat']
+        _uid=str(_json['uid'])
+        _long = str(_json['long'])
+        _lat =str(_json['lat'])
 
-        if _uuid and _long and _lat and request.method == 'POST':
+        if _uid and _long and _lat and request.method == 'POST':
             database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
             Log("Login database connected")
             query=database.cursor()
-            query.execute(("INSERT INTO gpsdata ('uid' , 'lat', 'longitude', 'time') VALUES ( {}, {}, {}, 0);").format(_uid,_lat,_long))
+            query.execute(("INSERT INTO gpsdata (id , lat, longitude, time) VALUES ( {},{},{}, '0');").format(_uid,_lat,_long))
+            database.commit()
+            database.close()
+            resp = jsonify("data entered")
+            return resp
         else:
             resp =jsonify("wrong format")
             return resp
