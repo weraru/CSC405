@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "MonoAndroid,Version=v9.0": {
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Plugin.CurrentActivity/2.1.0.2": {
         "type": "package",
         "frameworkAssemblies": [
@@ -833,6 +842,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
           "Plugin.Permissions": "3.0.0.12",
           "Xamarin.Essentials": "1.3.1",
           "Xamarin.Forms": "4.3.0.908675"
@@ -847,6 +857,37 @@
     }
   },
   "libraries": {
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Plugin.CurrentActivity/2.1.0.2": {
       "sha512": "uiMbA0G1ulSEj7MtGUQDDhzw80+QgvH5ts+Yt9cyft1dF4Eb0tYxiXAgNPuohJXpxhZmRs+6ZjL6QBaL/wUKDQ==",
       "type": "package",
@@ -1994,30 +2035,31 @@
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v9.0": [
       "App >= 1.0.0",
+      "Newtonsoft.Json >= 12.0.3",
       "Plugin.Permissions >= 3.0.0.12",
       "Xamarin.Essentials >= 1.3.1",
       "Xamarin.Forms >= 4.3.0.908675"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\10152\\.nuget\\packages\\": {},
+    "C:\\Users\\Artis\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10152\\Desktop\\Project\\App\\App.Android\\App.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App.Android\\App.Android.csproj",
       "projectName": "App.Android",
-      "projectPath": "C:\\Users\\10152\\Desktop\\Project\\App\\App.Android\\App.Android.csproj",
-      "packagesPath": "C:\\Users\\10152\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10152\\Desktop\\Project\\App\\App.Android\\obj\\",
+      "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App.Android\\App.Android.csproj",
+      "packagesPath": "C:\\Users\\Artis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\10152\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Artis\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -2031,8 +2073,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\10152\\Desktop\\Project\\App\\App\\App.csproj": {
-              "projectPath": "C:\\Users\\10152\\Desktop\\Project\\App\\App\\App.csproj"
+            "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App\\App.csproj": {
+              "projectPath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App\\App.csproj"
             }
           }
         }
@@ -2041,6 +2083,10 @@
     "frameworks": {
       "monoandroid90": {
         "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
+          },
           "Plugin.Permissions": {
             "target": "Package",
             "version": "[3.0.0.12, )"

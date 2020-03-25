@@ -13,3 +13,17 @@ C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.dll
 C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\ref\App.dll
 C:\Users\10152\Desktop\Project\App\App\obj\Debug\netstandard2.0\App.pdb
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\bin\Debug\netstandard2.0\App.deps.json
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\bin\Debug\netstandard2.0\App.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\bin\Debug\netstandard2.0\ref\App.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\bin\Debug\netstandard2.0\App.pdb
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\App.csprojAssemblyReference.cache
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\Pages\LoginPage.xaml.g.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\Pages\MainPage.xaml.g.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\Pages\ProfilePage.xaml.g.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\App.AssemblyInfoInputs.cache
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\App.AssemblyInfo.cs
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\App.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\ref\App.dll
+C:\Users\Artis\OneDrive\Documents\GitHub\CSC405\405Proj\App\App\App\obj\Debug\netstandard2.0\App.pdb

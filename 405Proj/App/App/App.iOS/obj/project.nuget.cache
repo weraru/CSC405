@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Q9fpZtNxXPRj6Q+cBtzYQyTwD/49wKQzOaNgVb9E03Q9Xkc6x0N77Yi1dpRh1ZWCatUGXqP8kkOkqHPrESzbpA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App.iOS\\App.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Artis\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Artis\\.nuget\\packages\\plugin.permissions\\3.0.0.12\\plugin.permissions.3.0.0.12.nupkg.sha512",
+    "C:\\Users\\Artis\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.3.1\\xamarin.essentials.1.3.1.nupkg.sha512",
+    "C:\\Users\\Artis\\.nuget\\packages\\xamarin.forms\\4.3.0.908675\\xamarin.forms.4.3.0.908675.nupkg.sha512"
+  ],
+  "logs": []
+}
