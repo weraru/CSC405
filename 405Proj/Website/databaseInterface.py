@@ -123,8 +123,25 @@ def changePassword(username, newpass):
     query.execute(("UPDATE login SET Password='{}', Salt='{}' WHERE Username='{}';".format(storedPass, salt, username)))
     database.commit()
     database.close()
-    
-Log("entering main")
+#######################################################3
+def searchByUser(userid):
+    lats=[]
+    longs=[]
+    times=[]
+    database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
+    Log("Login database connected")
+    query=database.cursor()
+    query.execute(("SELECT * FROM gpsdata WHERE id={}").format(str(userid)))
+    data = query.fetchone()
+    while data is not None:
+        times.append(data[1])
+        lats.append(data[2])
+        longs.append(data[3])
+        data=query.fetchone()
+    database.close()
+    return times,lats,longs
+
+
 #################MAIN############################################
 @app.route("/login", methods = ['POST'])
 def netLogin():
@@ -209,6 +226,24 @@ def datalog():
         print(e)
 
 
+@app.route("/searchuser", methods = ['POST'])
+def searchUser():
+    cursor = None
+    conn = None
+    _json = request.json
+    try:
+        if 1==1:
+            _uid = str(_json['uid'])
+            times,lats,longs = searchByUser(_uid)
+            resp=jsonify(times,lats,longs)
+            return resp
+
+        else:
+                resp =jsonify("wrong uid")
+                return resp
+
+    except Exception as e:
+        print(e)
 
 
 if __name__ == "__main__":
