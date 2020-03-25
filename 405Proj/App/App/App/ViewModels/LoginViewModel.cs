@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Net.Http;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 
 namespace App.ViewModels
@@ -24,10 +25,11 @@ namespace App.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("Email"));
             }
         }
-        private string password = "secret";
+        
+private string password = "secret";
         public string Password
         {
-            get { return password; }
+            get => password;
             set
             {
                 password = value;
@@ -40,10 +42,15 @@ namespace App.ViewModels
             SubmitCommand = new Command(OnSubmit);
         }
         public async void OnSubmit()
-        {       
-           // var values=new JavaScriptSerializer().Serialize({username, password});
-           // var content = new FormUrlEncodedContent(values);
-           // var response = await client.PostAsync("162.236.218.100:500/login", content);
+        {
+            User user = new User
+            {
+                username = email,
+                password = password
+            };
+            string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+            //var content = new FormUrlEncodedContent(jsonString);
+            //var response = await client.PostAsync("162.236.218.100:500/login", content);
             if (email != "watchmen@gmail.com" || password != "secret")
             {
                 DisplayInvalidLoginPrompt();
@@ -53,5 +60,11 @@ namespace App.ViewModels
                 App.Current.MainPage = new NavigationPage(new MainPage());
             }
         }
+        
+    }
+    public class User
+        {
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }
