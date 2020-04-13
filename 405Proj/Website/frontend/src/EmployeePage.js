@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Table from './EmployeeList'
+import Tablee from './EmployeeList'
 import NewEmployee from './NewEmployee'
 
 class EmployeePage extends Component {
     render(){
         return (
             <div>
-                <Table/>
+                <Tablee/>
                 <NewEmployee/>
             </div>
         );
