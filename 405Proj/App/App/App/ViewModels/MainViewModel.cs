@@ -20,6 +20,8 @@ namespace App.ViewModels
         public ICommand ProfileCommand { protected set; get; }
         public ICommand BreakCommand { protected set; get; }
 
+        public ICommand EmergencyCommand { protected set; get; }
+
 
         HttpClientHandler clientHandler = new HttpClientHandler();
 
@@ -31,6 +33,8 @@ namespace App.ViewModels
         private Timer aTimer;
         private Timer bTimer;
         private string _BreakText = "Break";
+        private string _EmergencyText = "Emergency";
+
 
         private string id;
         private HttpClient client;
@@ -177,6 +181,7 @@ namespace App.ViewModels
             }
         }
 
+
         public void Setup()
         {
             if (i != 1)
@@ -189,6 +194,7 @@ namespace App.ViewModels
                         
 
         }
+
 
         public string EmergencyText
         {
