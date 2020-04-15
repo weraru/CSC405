@@ -6,7 +6,8 @@ import Nav from './Nav';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignUp from './SignUp';
 import forgotPassword from './forgotPassword';
-import EmployeePage from './EmployeePage'
+import EmployeePage from './EmployeePage';
+import {ProtectedRoute} from "./protected.route";
 
 function App() {
   useEffect(() => {
@@ -21,11 +22,12 @@ function App() {
 ;      <div className="App">
         <Nav />
         <Switch>
-          <Route path="/" exact component={homePage} />
+          <Route path="/" exact component={SignInSide} />
           <Route path="/login" component={SignInSide} />
           <Route path="/signup" component={SignUp} />
           <Route path="/forgotpassword" component={forgotPassword} />
-          <Route path="/EmployeePage" component={EmployeePage}/>
+          <ProtectedRoute
+          path="/EmployeePage" component={EmployeePage}/>
         </Switch>
       </div>
     </Router>

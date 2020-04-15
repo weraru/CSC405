@@ -2,13 +2,16 @@ class Auth {
     constructor(){
         this.athenticated = false;
     }
-}
+
 
 login(cb, data){
-
+    console.log(data.token);
+    if (data.token){
+        
+        this.authenticated = true;
+        cb();
+    }
     
-    this.authenticated = true;
-    cb();
 }
 
 logout(cb){

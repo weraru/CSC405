@@ -12,7 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Auth from './Auth';
+
 
 function Copyright() {
   return (
@@ -59,26 +61,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function callAPI(signin){
-  useEffect(() => {
-    console.log(signin.username);
+function CallAPI(signin){
+    //console.log(JSON.stringify(signin));
     // POST request using fetch inside useEffect React hook
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(signin)
-    };
-    fetch('https://162.236.218.100:5005/login', requestOptions)
-        .then(response => response.json())
-        .then(result => console.log(result));
-
+    
+    //return(result);
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-}), ([]);
 }
 
-export default function SignInSide() {
+export default function SignInSide(props) {
   const classes = useStyles();
   const [ signin, setSignin ] = useState({username: '', password: ''});  
+  const [code, setResult] = useState('');
   const  { name, pass } = '';
 
   const changeHandler = (e) => {
@@ -90,7 +84,17 @@ export default function SignInSide() {
 
   const submitHandler = e => {
     e.preventDefault()
-    callAPI(signin)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(signin)
+    };
+  fetch('https://reqres.in/api/login', requestOptions)
+  .then(response => response.json())
+  .then(function(response) {
+    Auth.login(() => {props.history.push("/EmployeePage")}, response);
+  })
+
   }
 
   //console.log(signin);
