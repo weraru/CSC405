@@ -6,7 +6,7 @@ import './App.css';
 function homePage() {
   return (
     <div>
-      <h1> Home Page </h1>
+      <h1> Homeee Page </h1>
 
     </div>
   );
