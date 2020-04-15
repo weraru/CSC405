@@ -1,4 +1,5 @@
 FormsViewGroup
+GalaSoft.MvvmLight.Platform
 Plugin.CurrentActivity
 Plugin.Permissions
 Xamarin.Android.Arch.Core.Common

@@ -8,6 +8,9 @@ using App.Network;
 using App.Pages;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Net.Http;
+using System.Text;
+using System.Diagnostics;
 
 namespace App.ViewModels
 {
@@ -18,23 +21,39 @@ namespace App.ViewModels
         public ICommand BreakCommand { protected set; get; }
 
 
+        HttpClientHandler clientHandler = new HttpClientHandler();
+
+
+        public ICommand EmergencyCommand { protected set; get; }
+
+
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
         private string _BreakText = "Break";
 
-        public MainViewModel()
+        private string id;
+        private HttpClient client;
+        private int i;
+
+        private string _EmergencyText = "Emergency";
+
+
+        public MainViewModel(User user)
         {
+            Setup();
             ProfileCommand = new Command(OnProfileClicked);
             BreakCommand = new Command(OnBreakClicked);
+            EmergencyCommand = new Command(OnEmergencyClicked);
             LatLonCollection = new ObservableCollection<LatLon>();
             aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedGetLocationEvent);
-            aTimer.Interval = 3000;
+            aTimer.Interval = 10000;
             bTimer = new Timer();
             bTimer.Elapsed += new ElapsedEventHandler(OnTimedHttpCallEvent);
-            bTimer.Interval = 4000;
+            bTimer.Interval = 20000;
             EnableTimers(true);
+            id = user.id;
         }
 
         private void OnBreakClicked(object obj)
@@ -51,6 +70,8 @@ namespace App.ViewModels
             }
         }
 
+       
+
         private async void OnProfileClicked(object obj)
         {
             await App.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
@@ -61,6 +82,21 @@ namespace App.ViewModels
             aTimer.Enabled = b;
             bTimer.Enabled = b;
         }
+
+        private void OnEmergencyClicked(object obj)
+        {
+            if (BreakText != "In Emergency")
+            {
+                BreakText = "In Emergency";
+                EnableTimers(true);
+            }
+            else
+            {
+                BreakText = "Emergency";
+                EnableTimers(true);
+            }
+        }
+
         private void OnTimedGetLocationEvent(object sender, ElapsedEventArgs e)
         {
 
@@ -75,6 +111,20 @@ namespace App.ViewModels
                     {
                         LatLonCollection.Insert(0, new LatLon { Latitude = location.Latitude.ToString(), Longitude = location.Longitude.ToString() });
                         Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                        string loca= Newtonsoft.Json.JsonConvert.SerializeObject(new
+                        {
+                            uid = id,
+                            latitude = location.Latitude,
+                            longitude = location.Longitude,
+                            
+                        });
+                        var content = new StringContent(loca, Encoding.UTF8, "application/json");
+                        
+                        
+                        var response = await client.PostAsync("https://162.236.218.100:5005//gpsdata", content);
+                        var result = response.Content.ReadAsStringAsync().Result;
+                       
+                        Debug.WriteLine("Neku for smash" + result);
                     }
                 });
             }
@@ -126,5 +176,29 @@ namespace App.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("BreakText"));
             }
         }
+
+        public void Setup()
+        {
+            if (i != 1)
+                {
+                clientHandler.ServerCertificateCustomValidationCallback += (Sender, cert, chain, sslPolicyErrors) => { return true; };
+                client = new HttpClient(clientHandler);
+                Debug.WriteLine("Leave Goku in the Trash " + client.BaseAddress);
+                i = 1;
+            }
+                        
+
+        }
+
+        public string EmergencyText
+        {
+            get { return _EmergencyText; }
+            set
+            {
+                _EmergencyText = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("EmergencyText"));
+            }
+        }
     }
+
 }

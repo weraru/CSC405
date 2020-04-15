@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 //import './EmployeeList.css'
@@ -33,7 +34,6 @@ class Table extends Component
           return React.createElement("th", { key: index }, key.toUpperCase());
         });
       }
-
  
     renderTableData() 
     {
@@ -87,3 +87,4 @@ class Table extends Component
  }
 
  export default Table;
+

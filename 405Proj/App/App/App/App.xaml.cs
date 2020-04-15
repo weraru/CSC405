@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Pages;
+using App.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,6 +8,8 @@ namespace App
 {
     public partial class App : Application
     {
+        public  User User { get; internal set; }
+
         public App()
         {
             InitializeComponent();
@@ -20,7 +23,7 @@ namespace App
                 }
                 else
                 {
-                    MainPage = new NavigationPage(new MainPage());
+                    MainPage = new NavigationPage(new MainPage(User));
                 }
             }
         }

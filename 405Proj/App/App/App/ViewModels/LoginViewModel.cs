@@ -5,16 +5,21 @@ using Xamarin.Forms;
 using System.Net.Http;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Text;
+using GalaSoft.MvvmLight.Views;
 
 
 namespace App.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private static readonly HttpClient client = new HttpClient();
+        HttpClientHandler clientHandler = new HttpClientHandler();
+       
+        private HttpClient client = new HttpClient(new System.Net.Http.HttpClientHandler());
         public Action DisplayInvalidLoginPrompt;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private string email = "watchmen@gmail.com";
+        private string email = "run";
         public string id = "hi";
         public string Email
         {
@@ -26,7 +31,7 @@ namespace App.ViewModels
             }
         }
         
-private string password = "secret";
+private string password = "free";
         public string Password
         {
             get => password;
@@ -43,28 +48,50 @@ private string password = "secret";
         }
         public async void OnSubmit()
         {
-            User user = new User
+           
+            string user = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
+
                 username = email,
-                password = password
-            };
-            string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                password = password,
+            });
+            var content = new StringContent(user, Encoding.UTF8, "application/json");
+
+
+            //string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
             //var content = new FormUrlEncodedContent(jsonString);
-            //var response = await client.PostAsync("162.236.218.100:500/login", content);
-            if (email != "watchmen@gmail.com" || password != "secret")
+            clientHandler.ServerCertificateCustomValidationCallback += (sender, cert, chain, sslPolicyErrors) => { return true; };
+            client = new HttpClient(clientHandler);
+            var response = await client.PostAsync("https://162.236.218.100:5005/login", content);
+            var result = response.Content.ReadAsStringAsync().Result;
+            Debug.WriteLine("hero main" + result);
+            if (email=="0")
             {
                 DisplayInvalidLoginPrompt();
             }
             else
             {
-                App.Current.MainPage = new NavigationPage(new MainPage());
+                 User U = new User
+                {
+                    username = email,
+                    password = password,
+                    id = result
+                };
+               
+
+               App.Current.MainPage = new NavigationPage(new MainPage(U));
             }
         }
         
     }
-    public class User
+    public  partial class User 
         {
         public string username { get; set; }
         public string password { get; set; }
-    }
+        
+        public string id { get; set; }
+
+
+       }
+        
 }

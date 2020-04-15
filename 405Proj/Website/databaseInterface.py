@@ -37,22 +37,23 @@ def verify(password, salt, dbstored, UID):
 def Login(UserID, Password):
 
     try:
-        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
+        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
         Log("Login database connected in Login")
-        
+        print("connected")
         try:
             query=database.cursor()
             query.execute(("SELECT * FROM login WHERE Username='{}'".format(UserID)))
             data=query.fetchone()
             UID=data[0]
-            PW=data[2]
+            PW=data[1]
             SALT=data[3]
             database.close()
             #Communicate with website results
-            validateLogin = verify(Password,SALT,PW,UID)
-            print(validateLogin)
-            Log("Data succesfully retrieved from login database in Login")
-            return validateLogin
+            if verify(Password,SALT,PW,UID) == True:
+                return(str(UID))
+                Log("Data succesfully retrieved from login database in Login")
+            else:
+                return("-1")
             
         except Exception as e:
             print(e)
@@ -65,7 +66,7 @@ def Login(UserID, Password):
 
 def getNewUID():
     try:
-        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
+        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
         Log("Login database connected")
         query=database.cursor()
         query.execute(("SELECT UID FROM login;"))
@@ -88,13 +89,12 @@ def createUser(username, password):
         salt = bcrypt.gensalt()
         UID=getNewUID()
         storedPass=str(bcrypt.hashpw(str(password),salt))
-        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
+        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
         Log("Login database connected")
         query=database.cursor()
         query.execute(("SELECT Username FROM login;"))
         data = query.fetchone()
         dup=False
-        print("executed first")
         while data is not None:
             data=query.fetchone()
             name = str(query.fetchone())
@@ -115,7 +115,7 @@ def createUser(username, password):
         Log("Failed to create new user")
     
 def changePassword(username, newpass):
-    database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
+    database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
     Log("Login database connected")
     query=database.cursor()
     salt= bcrypt.gensalt()
@@ -123,8 +123,25 @@ def changePassword(username, newpass):
     query.execute(("UPDATE login SET Password='{}', Salt='{}' WHERE Username='{}';".format(storedPass, salt, username)))
     database.commit()
     database.close()
-    
-Log("entering main")
+#######################################################3
+def searchByUser(userid):
+    lats=[]
+    longs=[]
+    times=[]
+    database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="gps")
+    Log("Login database connected")
+    query=database.cursor()
+    query.execute(("SELECT * FROM gpsdata WHERE id={}").format(str(userid)))
+    data = query.fetchone()
+    while data is not None:
+        times.append(data[1])
+        lats.append(data[2])
+        longs.append(data[3])
+        data=query.fetchone()
+    database.close()
+    return times,lats,longs
+
+
 #################MAIN############################################
 @app.route("/login", methods = ['POST'])
 def netLogin():
@@ -134,17 +151,18 @@ def netLogin():
     try:
         Log("in try")
         _json = request.json
-        _username = _json['username']
-        _password = _json['password']
-
+        _username = str(_json['username'])
+        _password = str(_json['password'])
+        print(_password)
+        print(_username)
         if _username and _password and request.method == 'POST':
             result = Login(_username,_password)
-            if result == True:
-                resp=jsonify('Granted')
+            if result != "-1":
+                resp=jsonify(result)
                 resp.status_code = 200
                 return resp
             else:
-                resp=jsonify('Denied')
+                resp=jsonify(result)
                 resp.status_code = 200
                 return resp
         else:
@@ -189,14 +207,15 @@ def datalog():
         Log("in try")
         _json = request.json
         _uid=str(_json['uid'])
-        _long = str(_json['long'])
-        _lat =str(_json['lat'])
-
+        _long = str(_json['longitude'])
+        _lat =str(_json['latitude'])
+        _time = timestamp()
+        
         if _uid and _long and _lat and request.method == 'POST':
-            database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
+            database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="gps")
             Log("Login database connected")
             query=database.cursor()
-            query.execute(("INSERT INTO gpsdata (id , lat, longitude, time) VALUES ( {},{},{}, '0');").format(_uid,_lat,_long))
+            query.execute(("INSERT INTO gpsdata (UID , Latitude, Longitude, Date, time) VALUES ( {},{},{}, CURDATE(), CURRENT_TIME() );").format(_uid,_lat,_long))
             database.commit()
             database.close()
             resp = jsonify("data entered")
@@ -209,19 +228,27 @@ def datalog():
         print(e)
 
 
+@app.route("/searchuser", methods = ['POST'])
+def searchUser():
+    cursor = None
+    conn = None
+    _json = request.json
+    try:
+        if 1==1:
+            _uid = str(_json['uid'])
+            times,lats,longs = searchByUser(_uid)
+            resp=jsonify(times,lats,longs)
+            return resp
 
+        else:
+                resp =jsonify("wrong uid")
+                return resp
+
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5005)
-
-
-
-
-
-
-
-
-
+    app.run(host='0.0.0.0', port=5005, ssl_context=('cert.pem', 'key.pem'))
 
 
 

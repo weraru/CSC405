@@ -4,7 +4,12 @@ public class MonoPackageManager_Resources {
 		/* We need to ensure that "App.Android.dll" comes first in this list. */
 		"App.Android.dll",
 		"App.dll",
+		"CommonServiceLocator.dll",
 		"FormsViewGroup.dll",
+		"GalaSoft.MvvmLight.dll",
+		"GalaSoft.MvvmLight.Extras.dll",
+		"GalaSoft.MvvmLight.Platform.dll",
+		"Newtonsoft.Json.dll",
 		"Plugin.CurrentActivity.dll",
 		"Plugin.Permissions.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",

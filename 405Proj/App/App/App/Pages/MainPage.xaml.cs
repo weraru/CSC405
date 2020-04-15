@@ -19,10 +19,10 @@ namespace App
     {
         private Timer timer;
 
-        public MainPage()
+        public MainPage(User user)
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            BindingContext = new MainViewModel(user);
             timer = new System.Timers.Timer();
             timer.Interval = 60000;
 

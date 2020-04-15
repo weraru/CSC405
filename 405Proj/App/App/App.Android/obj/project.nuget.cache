@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "EhymLsypOxAbSaKlMx8+ZAJa1Nuj6Ok6XAIr82g6OQ2ON2oOgzwEu9bh4rXeQrZWQCwYrN+/r8pkkMcR9Cr/SA==",
+  "dgSpecHash": "O9bM58vgM+Vr4POJ9TwcaEbP3bLJBBYAebhmB40Je77CrvwcBPldyTHfWE0eQxHiivY+U6WTFo1CEkw/UqP1nw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Artis\\OneDrive\\Documents\\GitHub\\CSC405\\405Proj\\App\\App\\App.Android\\App.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Artis\\.nuget\\packages\\commonservicelocator\\2.0.2\\commonservicelocator.2.0.2.nupkg.sha512",
+    "C:\\Users\\Artis\\.nuget\\packages\\mvvmlightlibs\\5.4.1.1\\mvvmlightlibs.5.4.1.1.nupkg.sha512",
     "C:\\Users\\Artis\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Artis\\.nuget\\packages\\plugin.currentactivity\\2.1.0.2\\plugin.currentactivity.2.1.0.2.nupkg.sha512",
     "C:\\Users\\Artis\\.nuget\\packages\\plugin.permissions\\3.0.0.12\\plugin.permissions.3.0.0.12.nupkg.sha512",
