@@ -3,6 +3,7 @@ from datetime import datetime
 import bcrypt
 from flask import Flask
 from flask import jsonify, request
+import uuid
 app = Flask(__name__)
 #establish variables
 
@@ -63,6 +64,36 @@ def Login(UserID, Password):
         Log("Login database failed to connect in Login")
         
 
+def adminLogin(UserID, Password):
+
+    try:
+        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="admindata")
+        Log("Login database connected in Login")
+        print("connected")
+        try:
+            query=database.cursor()
+            query.execute(("SELECT * FROM login WHERE Username='{}'".format(UserID)))
+            data=query.fetchone()
+            UID=data[0]
+            PW=data[1]
+            SALT=data[3]
+            database.close()
+            #Communicate with website results
+            if verify(Password,SALT,PW,UID) == True:
+                return(str(UID))
+                Log("Data succesfully retrieved from login database in Login")
+            else:
+                return("-1")
+            
+        except Exception as e:
+            print(e)
+            Log("Data failed to retrieve from login database in Login")
+            
+    except:
+        Log("Login database failed to connect in Login")
+        
+
+
 
 def getNewUID():
     try:
@@ -71,14 +102,14 @@ def getNewUID():
         query=database.cursor()
         query.execute(("SELECT UID FROM login;"))
         data = query.fetchone()
-        numids=1
-        Log("New UID generated")
+        tempid=uuid.uuid4()
         while data is not None:
             data = query.fetchone()
-            numids+=1
+            if data == tempid:
+                return "-1"
         Log("New UID returned")
         database.close()
-        return numids
+        return tempid
 
     except:
         Log("Failed to connect to login database in getNewUID()")
@@ -114,6 +145,36 @@ def createUser(username, password):
         print(e)
         Log("Failed to create new user")
     
+def createAdmin(username, password):
+    try:
+        salt = bcrypt.gensalt()
+        UID=getNewUID()
+        storedPass=str(bcrypt.hashpw(str(password),salt))
+        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="admindata")
+        Log("Login database connected")
+        query=database.cursor()
+        query.execute(("SELECT Username FROM login;"))
+        data = query.fetchone()
+        dup=False
+        while data is not None:
+            data=query.fetchone()
+            name = str(query.fetchone())
+            name = name.strip("(',)")
+            if name == username:
+                dup=True
+            else:
+                pass
+        if dup==True:
+            Log("Invalid username")
+        else:
+            query.execute(("INSERT INTO login (UID, Password, Username, Salt) VALUES ('{}','{}','{}','{}');".format(UID,storedPass,username,salt)))
+            database.commit()
+            Log("New User created and committed to database")
+        database.close()
+    except Exception as e:
+        print(e)
+        Log("Failed to create new user")
+ 
 def changePassword(username, newpass):
     database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
     Log("Login database connected")
@@ -171,6 +232,38 @@ def netLogin():
 
     except Exception as e:
         print(e)
+###########################
+@app.route("/AdminLogin", methods = ['POST'])
+def adLogin():
+    Log("in app")
+    cursor = None
+    conn = None
+    try:
+        Log("in try")
+        _json = request.json
+        _username = str(_json['username'])
+        _password = str(_json['password'])
+        print(_password)
+        print(_username)
+        if _username and _password and request.method == 'POST':
+            result = adminLogin(_username,_password)
+            if result != "-1":
+                resp=jsonify(result)
+                resp.status_code = 200
+                return resp
+            else:
+                resp=jsonify(result)
+                resp.status_code = 200
+                return resp
+        else:
+            resp =jsonify("wrong format")
+            return resp
+
+    except Exception as e:
+        print(e)
+
+
+
 
 @app.route("/createUser", methods = ['POST'])
 def netCreateUser():
@@ -196,6 +289,29 @@ def netCreateUser():
     except Exception as e:
         print(e)
 
+@app.route("/createAdmin", methods = ['POST'])
+def netCreateAdmin():
+    Log("in app")
+    cursor = None
+    conn = None
+    try:
+        Log("in try")
+        _json = request.json
+        _username = _json['username']
+        _password = _json['password']
+
+        if _username and _password and request.method == 'POST':
+            createAdmin(_username,_password)
+            
+            resp=jsonify('User Created')
+            resp.status_code = 200
+            return resp
+        else:
+            resp =jsonify("wrong format")
+            return resp
+
+    except Exception as e:
+        print(e)
 
 ###
 @app.route("/gpsdata", methods = ['POST'])
