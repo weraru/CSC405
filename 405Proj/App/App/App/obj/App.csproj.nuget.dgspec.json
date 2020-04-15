@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\werar\\Desktop\\CSC405\\405Proj\\App\\App\\App\\App.csproj": {}
+    "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App\\App\\App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\werar\\Desktop\\CSC405\\405Proj\\App\\App\\App\\App.csproj": {
+    "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App\\App\\App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\werar\\Desktop\\CSC405\\405Proj\\App\\App\\App\\App.csproj",
+        "projectUniqueName": "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App\\App\\App.csproj",
         "projectName": "App",
-        "projectPath": "C:\\Users\\werar\\Desktop\\CSC405\\405Proj\\App\\App\\App\\App.csproj",
-        "packagesPath": "C:\\Users\\werar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\werar\\Desktop\\CSC405\\405Proj\\App\\App\\App\\obj\\",
+        "projectPath": "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App\\App\\App.csproj",
+        "packagesPath": "C:\\Users\\10152\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10152\\Desktop\\123\\CSC405\\405Proj\\App\\App\\App\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\werar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\10152\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -71,7 +75,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

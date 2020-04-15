@@ -17,16 +17,21 @@ namespace App.ViewModels
         public ICommand ProfileCommand { protected set; get; }
         public ICommand BreakCommand { protected set; get; }
 
+        public ICommand EmergencyCommand { protected set; get; }
+
 
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
         private string _BreakText = "Break";
+        private string _EmergencyText = "Emergency";
+
 
         public MainViewModel()
         {
             ProfileCommand = new Command(OnProfileClicked);
             BreakCommand = new Command(OnBreakClicked);
+            EmergencyCommand = new Command(OnEmergencyClicked);
             LatLonCollection = new ObservableCollection<LatLon>();
             aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedGetLocationEvent);
@@ -51,6 +56,8 @@ namespace App.ViewModels
             }
         }
 
+       
+
         private async void OnProfileClicked(object obj)
         {
             await App.Current.MainPage.Navigation.PushModalAsync(new ProfilePage());
@@ -61,6 +68,21 @@ namespace App.ViewModels
             aTimer.Enabled = b;
             bTimer.Enabled = b;
         }
+
+        private void OnEmergencyClicked(object obj)
+        {
+            if (BreakText != "In Emergency")
+            {
+                BreakText = "In Emergency";
+                EnableTimers(true);
+            }
+            else
+            {
+                BreakText = "Emergency";
+                EnableTimers(true);
+            }
+        }
+
         private void OnTimedGetLocationEvent(object sender, ElapsedEventArgs e)
         {
 
@@ -124,6 +146,15 @@ namespace App.ViewModels
             {
                 _BreakText = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("BreakText"));
+            }
+        }
+        public string EmergencyText
+        {
+            get { return _EmergencyText; }
+            set
+            {
+                _EmergencyText = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("EmergencyText"));
             }
         }
     }
