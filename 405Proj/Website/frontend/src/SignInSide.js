@@ -83,19 +83,27 @@ export default function SignInSide(props) {
   }
 
   const submitHandler = e => {
-    e.preventDefault()
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(signin)
-    };
-  fetch('https://reqres.in/api/login', requestOptions)
-  .then(response => response.json())
-  .then(function(response) {
-    Auth.login(() => {props.history.push("/EmployeePage")}, response);
-  })
+    //e.preventDefault()
+    
+    Auth.login(() => {props.history.push("/EmployeePage")}, 6);
+    /*var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  }
+    var raw = JSON.stringify({"username":"hhh","password":"vvv"});
+
+    var requestOptions = {
+      method: 'POST',
+      mode: 'cors',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+};
+
+  fetch("https://162.236.218.100:5005/login", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+*/};
 
   //console.log(signin);
   return (

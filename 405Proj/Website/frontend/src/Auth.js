@@ -5,8 +5,7 @@ class Auth {
 
 
 login(cb, data){
-    console.log(data.token);
-    if (data.token){
+    if(data == 6){
         
         this.authenticated = true;
         cb();
