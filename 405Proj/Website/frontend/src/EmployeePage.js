@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Tablee from './EmployeeList'
+import EnhancedTable from './EmployeeList'
 import NewEmployee from './NewEmployee'
+
 
 class EmployeePage extends Component {
     render(){
         return (
             <div>
-                <Tablee/>
+                <EnhancedTable/>
                 <NewEmployee/>
+                
             </div>
         );
     }

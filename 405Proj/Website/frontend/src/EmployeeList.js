@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -20,6 +22,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import Indiv  from './Indiv';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -53,7 +56,7 @@ const headCells = [
   { id: 'ID', numeric: true, disablePadding: true, label: 'ID' },
   { id: 'Name', numeric: false, disablePadding: false, label: 'Name' },
   { id: 'Email', numeric: false, disablePadding: false, label: 'Email' },
-
+  { id: 'Location', numeric: false, disablePadding: false, label: 'Current Location' },
 ];
 
 function EnhancedTableHead(props) {
@@ -108,6 +111,8 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
+
+
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -164,11 +169,13 @@ const EnhancedTableToolbar = (props) => {
       )}
     </Toolbar>
   );
-};
+}
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -177,6 +184,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '100%',
     marginBottom: theme.spacing(2),
+  },
+  container: {
+    maxHeight: 440
   },
   table: {
     minWidth: 750,
@@ -203,6 +213,16 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [stuff, setStuff] = React.useState([]);
+  const [showIndiv, setShowIndiv] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch("/employees").then(response => 
+      response.json().then(data => {
+        setStuff(data)
+    })
+    );
+  }, []);
 
   React.useEffect(() => {
     fetch("/employees").then(response => 
@@ -220,13 +240,22 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n.employee_name);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
-    
   };
+
+  const handleRowClick = (event, name) => {
+    setShowIndiv(true);
+  
+  }
+
+  let IndivClose = () => {
+    setShowIndiv(false);
+  }
+
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -249,6 +278,8 @@ export default function EnhancedTable() {
     
   };
 
+
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -266,12 +297,14 @@ export default function EnhancedTable() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
+
   return (
+    <>
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
-          <Table
+        <TableContainer  className = {classes.container}>
+          <Table 
             className={classes.table}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
@@ -296,15 +329,16 @@ export default function EnhancedTable() {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.employee_name)}
+                      onClick={(event) => handleRowClick(event, row.employee_name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.employee_id}
                       selected={isItemSelected}
-                    >
+                    >                     
                       <TableCell padding="checkbox">
                         <Checkbox
+                          onClick={(event) => handleClick(event, row.employee_name)}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
@@ -314,6 +348,7 @@ export default function EnhancedTable() {
                       </TableCell>
                       <TableCell align="right">{row.employee_name}</TableCell>
                       <TableCell align="right">{row.employee_email}</TableCell>
+                      <TableCell align="right">{}</TableCell>
   
                     </TableRow>
                   );
@@ -336,10 +371,16 @@ export default function EnhancedTable() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
     </div>
+    <Indiv 
+          show = {showIndiv}
+          onHide = {IndivClose} 
+        />
+  </>
   );
 }

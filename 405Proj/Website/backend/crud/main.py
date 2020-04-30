@@ -52,6 +52,7 @@ def employees():
 		
 @app.route('/employee/<int:id>')
 def employee(id):
+    print(id)
     cursor=None
     conn=None
     try:

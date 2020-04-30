@@ -8,6 +8,7 @@ import SignUp from './SignUp';
 import forgotPassword from './forgotPassword';
 import EmployeePage from './EmployeePage';
 import {ProtectedRoute} from "./protected.route";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   useEffect(() => {
