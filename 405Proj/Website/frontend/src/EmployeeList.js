@@ -25,6 +25,39 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import Indiv  from './Indiv';
 
 
+function format(name, id, latitude, longitude, date, time){
+  //var place = convert(latitude, longitude);
+  //place.then()
+ return {name, id, latitude, longitude, date, time};
+}
+
+function add(data){
+  var formattedData = []
+  var i;
+    
+  for(i = 0; i<data[0].length; i++) {
+    formattedData.push(format(data[0][i],data[1][i],data[2][i],data[3][i],data[4][i],data[5][i] ));
+  }
+    return formattedData;
+  }
+
+async function convert(latitude, longitude)
+{
+  const KEY = "AIzaSyDHskpHwGLtNYyH6tpbCbRYxFABpUDPTJo";
+      const LAT = parseFloat(latitude);
+      const LNG = parseFloat(longitude);
+      let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${KEY}`;
+      try {
+    const response = await fetch(url);
+    const data = await response.json();
+    let address = data.results[0].formatted_address;
+    return address;
+  }
+  catch (err) {
+    return console.warn(err.message);
+  }
+}
+
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -53,10 +86,10 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'ID', numeric: true, disablePadding: true, label: 'ID' },
-  { id: 'Name', numeric: false, disablePadding: false, label: 'Name' },
-  { id: 'Email', numeric: false, disablePadding: false, label: 'Email' },
-  { id: 'Location', numeric: false, disablePadding: false, label: 'Current Location' },
+  { id: 'Name', numeric: false, disablePadding: true, label: 'Name' },
+  { id: 'ID', numeric: false, disablePadding: false, label: 'ID' },
+  { id: 'latitude', numeric: false, disablePadding: false, label: 'Latest Latitude' },
+  { id: 'longitude', numeric: false, disablePadding: false, label: 'Latest Longitude' },
 ];
 
 function EnhancedTableHead(props) {
@@ -79,7 +112,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'left' : 'right'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -150,7 +183,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          Employees
         </Typography>
       )}
 
@@ -204,11 +237,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function EnhancedTable() {
+  const [data, setData] = React.useState([]);
   const [rows, setRows] = React.useState([]);
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('employee_id');
+  const [orderBy, setOrderBy] = React.useState('name');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -217,20 +252,30 @@ export default function EnhancedTable() {
   const [showIndiv, setShowIndiv] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/employees").then(response => 
-      response.json().then(data => {
-        setStuff(data)
-    })
-    );
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    //myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({"username":"bob","password":"password"});
+    
+    var requestOptions = {
+      method: 'POST',
+      mode: 'cors',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+    
+    fetch("https://162.236.218.100:5005/map", requestOptions)
+      .then(response => response.json()
+      .then(result => 
+        setRows(add(result))));
   }, []);
 
-  React.useEffect(() => {
-    fetch("/employees").then(response => 
-      response.json().then(data => {
-        setRows(data)
-    })
-    );
-  }, []);
+  console.log(data);
+  /*React.useEffect(() => {
+    setRows(format(data));
+  }, []);*/ 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -240,7 +285,7 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.employee_name);
+      const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -255,7 +300,7 @@ export default function EnhancedTable() {
   let IndivClose = () => {
     setShowIndiv(false);
   }
-
+   
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -277,7 +322,6 @@ export default function EnhancedTable() {
     setSelected(newSelected);
     
   };
-
 
 
   const handleChangePage = (event, newPage) => {
@@ -323,39 +367,39 @@ export default function EnhancedTable() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.employee_name);
+                  const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleRowClick(event, row.employee_name)}
+                      onClick={(event) => handleRowClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.employee_id}
+                      key={row.id}
                       selected={isItemSelected}
                     >                     
                       <TableCell padding="checkbox">
                         <Checkbox
-                          onClick={(event) => handleClick(event, row.employee_name)}
+                          onClick={(event) => handleClick(event, row.name)}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.employee_id}
+                        {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.employee_name}</TableCell>
-                      <TableCell align="right">{row.employee_email}</TableCell>
-                      <TableCell align="right">{}</TableCell>
+                      <TableCell align="right">{row.id}</TableCell>
+                      <TableCell align="right">{row.latitude}</TableCell>
+                      <TableCell align="right">{row.longitude}</TableCell>
   
                     </TableRow>
                   );
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                  <TableCell colSpan={4} />
+                  <TableCell colSpan={5} />
                 </TableRow>
               )}
             </TableBody>

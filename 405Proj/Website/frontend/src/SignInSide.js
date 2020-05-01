@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import Auth from './Auth';
+import FailLogin from './FailLogin';
 
 
 function Copyright() {
@@ -74,6 +75,7 @@ export default function SignInSide(props) {
   const [ signin, setSignin ] = useState({username: '', password: ''});  
   const [code, setResult] = useState('');
   const  { name, pass } = '';
+  const [showIndiv, setShowIndiv] = React.useState(false);
 
   const changeHandler = (e) => {
     
@@ -83,30 +85,37 @@ export default function SignInSide(props) {
   }
 
   const submitHandler = e => {
-    //e.preventDefault()
-    
-    Auth.login(() => {props.history.push("/EmployeePage")}, 6);
-    /*var myHeaders = new Headers();
+    e.preventDefault()
+  
+    var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({"username":"hhh","password":"vvv"});
-
+    //myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({"username":signin.username,"password":signin.password});
+    
     var requestOptions = {
       method: 'POST',
       mode: 'cors',
       headers: myHeaders,
       body: raw,
-      redirect: 'follow'
+      redirect: 'follow',
+    };
+    
+    fetch("https://162.236.218.100:5005/login", requestOptions)
+      .then(response => response.json())
+      .then(result => 
+        {if (Auth.login(() => {props.history.push("/EmployeePage")}, result) == "-1")
+        setShowIndiv(true);
+      });
 };
-
-  fetch("https://162.236.218.100:5005/login", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-*/};
+  let IndivClose = () => {
+    setShowIndiv(false);
+  }
+ 
 
   //console.log(signin);
   return (
+    <div>
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -180,5 +189,10 @@ export default function SignInSide(props) {
         </div>
       </Grid>
     </Grid>
+        <FailLogin 
+        show = {showIndiv}
+        onHide = {IndivClose} 
+      />
+      </div>
   );
 }
