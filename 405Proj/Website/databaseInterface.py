@@ -4,6 +4,12 @@ import bcrypt
 from flask import Flask
 from flask import jsonify, request
 import uuid
+import cProfile
+import re
+from flask_cors import CORS
+
+
+
 app = Flask(__name__)
 #establish variables
 
@@ -38,7 +44,7 @@ def verify(password, salt, dbstored, UID):
 def Login(UserID, Password):
 
     try:
-        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
+        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
         Log("Login database connected in Login")
         print("connected")
         try:
@@ -67,7 +73,7 @@ def Login(UserID, Password):
 def adminLogin(UserID, Password):
 
     try:
-        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="admindata")
+        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="admindata")
         Log("Login database connected in Login")
         print("connected")
         try:
@@ -97,7 +103,7 @@ def adminLogin(UserID, Password):
 
 def getNewUID():
     try:
-        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
+        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
         Log("Login database connected")
         query=database.cursor()
         query.execute(("SELECT UID FROM login;"))
@@ -120,7 +126,7 @@ def createUser(username, password):
         salt = bcrypt.gensalt()
         UID=getNewUID()
         storedPass=str(bcrypt.hashpw(str(password),salt))
-        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
+        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
         Log("Login database connected")
         query=database.cursor()
         query.execute(("SELECT Username FROM login;"))
@@ -150,7 +156,7 @@ def createAdmin(username, password):
         salt = bcrypt.gensalt()
         UID=getNewUID()
         storedPass=str(bcrypt.hashpw(str(password),salt))
-        database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="admindata")
+        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="admindata")
         Log("Login database connected")
         query=database.cursor()
         query.execute(("SELECT Username FROM login;"))
@@ -176,7 +182,7 @@ def createAdmin(username, password):
         Log("Failed to create new user")
  
 def changePassword(username, newpass):
-    database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="logindata")
+    database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
     Log("Login database connected")
     query=database.cursor()
     salt= bcrypt.gensalt()
@@ -184,61 +190,121 @@ def changePassword(username, newpass):
     query.execute(("UPDATE login SET Password='{}', Salt='{}' WHERE Username='{}';".format(storedPass, salt, username)))
     database.commit()
     database.close()
-#######################################################3
+
 def searchByUser(userid):
     lats=[]
     longs=[]
     times=[]
-    database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="gps")
+    database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
     Log("Login database connected")
     query=database.cursor()
-    query.execute(("SELECT * FROM gpsdata WHERE id={}").format(str(userid)))
+    query.execute(("SELECT * FROM gpsdata WHERE UID={}").format(str(userid)))
     data = query.fetchone()
     while data is not None:
-        times.append(data[1])
-        lats.append(data[2])
-        longs.append(data[3])
+        times.append(data[4])
+        lats.append(data[1])
+        longs.append(data[2])
         data=query.fetchone()
     database.close()
     return times,lats,longs
 
+def mapValues():
+    initial_db=[]
+    usernames=[]
+    uids=[]
+    lats=[]
+    longs=[]
+    dates=[]
+    times=[]
 
-#################MAIN############################################
-@app.route("/login", methods = ['POST'])
+    database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="logindata")
+    Log("Login database connected")
+    query=database.cursor()
+    query.execute(("SELECT Username,UID FROM login"))
+    data = query.fetchone()
+    
+    while data != None:
+        uids.append(data[1])
+        usernames.append(data[0])
+        data = query.fetchone()
+    database.close()
+    for entry in uids:
+        database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
+        query=database.cursor()
+        query.execute(("SELECT * FROM gpsdata WHERE UID = '{}' ORDER BY Dates,Times DESC;").format(entry))
+        data=query.fetchone()
+        lats.append(data[1])
+        longs.append(data[2])
+        yr=str(data[3].year)
+        mo=str(data[3].month)
+        day=str(data[3].day)
+        finstr=yr + "-" + mo + "-" + day
+        dates.append(finstr)
+        times.append(str(data[4]))
+    return usernames,uids,lats,longs,dates,times
+    
+mapValues()
+
+#################ROUTES############################################
+@app.route("/login", methods = ['POST', 'OPTIONS'])
 def netLogin():
     Log("in app")
     cursor = None
     conn = None
+
     try:
-        Log("in try")
+        if request.method=="OPTIONS":
+            resp=jsonify("")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
+        
         _json = request.json
         _username = str(_json['username'])
         _password = str(_json['password'])
-        print(_password)
-        print(_username)
         if _username and _password and request.method == 'POST':
             result = Login(_username,_password)
+            print(result)
             if result != "-1":
                 resp=jsonify(result)
+                resp.headers.add("Access-Control-Allow-Origin", "*")
+                resp.headers.add("Access-Control-Allow-Methods", "*")
+                resp.headers.add("Access-Control-Allow-Headers", "*")
                 resp.status_code = 200
                 return resp
             else:
                 resp=jsonify(result)
+                resp.headers.add("Access-Control-Allow-Origin", "*")
+                resp.headers.add("Access-Control-Allow-Methods", "*")
+                resp.headers.add("Access-Control-Allow-Headers", "*")
                 resp.status_code = 200
                 return resp
         else:
             resp =jsonify("wrong format")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
             return resp
 
     except Exception as e:
         print(e)
-###########################
-@app.route("/AdminLogin", methods = ['POST'])
+
+
+
+
+@app.route("/AdminLogin", methods = ['POST','OPTIONS'])
 def adLogin():
     Log("in app")
     cursor = None
     conn = None
     try:
+        if request.method=="OPTIONS":
+            resp=jsonify("0")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
         Log("in try")
         _json = request.json
         _username = str(_json['username'])
@@ -249,10 +315,16 @@ def adLogin():
             result = adminLogin(_username,_password)
             if result != "-1":
                 resp=jsonify(result)
+                resp.headers.add("Access-Control-Allow-Origin", "*")
+                resp.headers.add("Access-Control-Allow-Methods", "*")
+                resp.headers.add("Access-Control-Allow-Headers", "*")
                 resp.status_code = 200
                 return resp
             else:
                 resp=jsonify(result)
+                resp.headers.add("Access-Control-Allow-Origin", "*")
+                resp.headers.add("Access-Control-Allow-Methods", "*")
+                resp.headers.add("Access-Control-Allow-Headers", "*")
                 resp.status_code = 200
                 return resp
         else:
@@ -271,6 +343,12 @@ def netCreateUser():
     cursor = None
     conn = None
     try:
+        if request.method=="OPTIONS":
+            resp=jsonify("0")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
         Log("in try")
         _json = request.json
         _username = _json['username']
@@ -278,12 +356,17 @@ def netCreateUser():
 
         if _username and _password and request.method == 'POST':
             createUser(_username,_password)
-            
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
             resp=jsonify('User Created')
             resp.status_code = 200
             return resp
         else:
             resp =jsonify("wrong format")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
             return resp
 
     except Exception as e:
@@ -295,6 +378,12 @@ def netCreateAdmin():
     cursor = None
     conn = None
     try:
+        if request.method=="OPTIONS":
+            resp=jsonify("0")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
         Log("in try")
         _json = request.json
         _username = _json['username']
@@ -305,9 +394,15 @@ def netCreateAdmin():
             
             resp=jsonify('User Created')
             resp.status_code = 200
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
             return resp
         else:
             resp =jsonify("wrong format")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
             return resp
 
     except Exception as e:
@@ -320,6 +415,12 @@ def datalog():
     cursor = None
     conn = None
     try:
+        if request.method=="OPTIONS":
+            resp=jsonify("0")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
         Log("in try")
         _json = request.json
         _uid=str(_json['uid'])
@@ -328,10 +429,10 @@ def datalog():
         _time = timestamp()
         
         if _uid and _long and _lat and request.method == 'POST':
-            database = MySQLdb.connect(host="database-2.ca5zjjy9qj09.us-east-1.rds.amazonaws.com",user="admin",passwd="password",db="gps")
+            database = MySQLdb.connect(host="localhost",user="root",passwd="watchmen",db="gps")
             Log("Login database connected")
             query=database.cursor()
-            query.execute(("INSERT INTO gpsdata (UID , Latitude, Longitude, Date, time) VALUES ( {},{},{}, CURDATE(), CURRENT_TIME() );").format(_uid,_lat,_long))
+            query.execute(("INSERT INTO gpsdata (UID , Latitude, Longitude, Dates, Times) VALUES ( {},{},{}, CURDATE(), CURRENT_TIME() );").format(_uid,_lat,_long))
             database.commit()
             database.close()
             resp = jsonify("data entered")
@@ -350,6 +451,12 @@ def searchUser():
     conn = None
     _json = request.json
     try:
+        if request.method=="OPTIONS":
+            resp=jsonify("0")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
         if 1==1:
             _uid = str(_json['uid'])
             times,lats,longs = searchByUser(_uid)
@@ -363,9 +470,42 @@ def searchUser():
     except Exception as e:
         print(e)
 
+
+@app.route("/map", methods = ['POST','OPTIONS'])
+def mapping():
+    cursor = None
+    conn = None
+    _json = request.json
+    try:
+        if request.method=="OPTIONS":
+            resp=jsonify("0")
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
+        if 1==1:
+            usernames,uids,lats,longs,dates,times=mapValues()
+            resp=jsonify(usernames,uids,lats,longs,dates,times)
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+            resp.headers.add("Access-Control-Allow-Methods", "*")
+            resp.headers.add("Access-Control-Allow-Headers", "*")
+            return resp
+
+        else:
+                resp =jsonify("wrong uid")
+                resp.headers.add("Access-Control-Allow-Origin", "*")
+                resp.headers.add("Access-Control-Allow-Methods", "*")
+                resp.headers.add("Access-Control-Allow-Headers", "*")
+                return resp
+
+    except Exception as e:
+        print(e)
+
+#####MAIN#######################################################################
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5005, ssl_context=('cert.pem', 'key.pem'))
 
+#CORS(app.run(host='0.0.0.0', port=5005, ssl_context=('cert.pem', 'key.pem')))
 
 
 
