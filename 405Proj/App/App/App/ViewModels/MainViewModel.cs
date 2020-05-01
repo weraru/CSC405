@@ -26,13 +26,13 @@ namespace App.ViewModels
         HttpClientHandler clientHandler = new HttpClientHandler();
 
 
-        public ICommand EmergencyCommand { protected set; get; }
+        
 
 
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
-        private string _BreakText = "Break";
+        private string _BreakText = "Go off break!";
         private string _EmergencyText = "Emergency";
 
 
@@ -40,7 +40,7 @@ namespace App.ViewModels
         private HttpClient client;
         private int i;
 
-        private string _EmergencyText = "Emergency";
+        
 
 
         public MainViewModel(User user)
@@ -62,14 +62,14 @@ namespace App.ViewModels
 
         private void OnBreakClicked(object obj)
         {
-            if (BreakText != "On Break")
+            if (BreakText != "Go off break!")
             {
-                BreakText = "On Break";
+                BreakText = "Go on break";
                 EnableTimers(false);
             }
             else
             {
-                BreakText = "Break";
+                BreakText = "Go off break!";
                 EnableTimers(true);
             }
         }
