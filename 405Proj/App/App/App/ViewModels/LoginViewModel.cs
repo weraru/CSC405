@@ -63,15 +63,23 @@ private string password = "free";
             clientHandler.ServerCertificateCustomValidationCallback += (sender, cert, chain, sslPolicyErrors) => { return true; };
             client = new HttpClient(clientHandler);
             var response = await client.PostAsync("https://162.236.218.100:5005/login", content);
-            var result = response.Content.ReadAsStringAsync().Result;
-            Debug.WriteLine("hero main" + result);
-            if (email=="0")
+            string result = response.Content.ReadAsStringAsync().Result;
+            string hi = "HI";
+            const string quote = "\"";
+            Debug.WriteLine("hero main " + result + "!");
+            Debug.WriteLine(result.ToString());
+            Debug.WriteLine((quote + "-1" + quote).ToString());
+            
+            if (result.TrimEnd() == (quote + "-1" + quote).ToString())
             {
+                Debug.WriteLine("login invalid");
                 DisplayInvalidLoginPrompt();
             }
             else
             {
-                 User U = new User
+                Debug.WriteLine("login valid");
+
+                User U = new User
                 {
                     username = email,
                     password = password,

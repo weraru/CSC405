@@ -54,7 +54,7 @@
                    SelectionMode="None"
                    SeparatorColor="White"
                    BackgroundColor="Transparent">
-            <ListView.ItemTemplate>
+          <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout BackgroundColor="Transparent"

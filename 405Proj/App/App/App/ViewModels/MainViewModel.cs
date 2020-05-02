@@ -24,15 +24,16 @@ namespace App.ViewModels
 
 
         HttpClientHandler clientHandler = new HttpClientHandler();
-
-
         
+
+
+
 
 
         ObservableCollection<LatLon> _LatLonCollection;
         private Timer aTimer;
         private Timer bTimer;
-        private string _BreakText = "Go off break!";
+        private string _BreakText = "Go on break!";
         private string _EmergencyText = "Emergency";
 
 
@@ -52,10 +53,10 @@ namespace App.ViewModels
             LatLonCollection = new ObservableCollection<LatLon>();
             aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedGetLocationEvent);
-            aTimer.Interval = 10000;
+            aTimer.Interval = 1000;
             bTimer = new Timer();
             bTimer.Elapsed += new ElapsedEventHandler(OnTimedHttpCallEvent);
-            bTimer.Interval = 20000;
+            bTimer.Interval = 2000;
             EnableTimers(true);
             id = user.id;
         }
@@ -64,12 +65,12 @@ namespace App.ViewModels
         {
             if (BreakText != "Go off break!")
             {
-                BreakText = "Go on break";
+                BreakText = "Go off break!";
                 EnableTimers(false);
             }
             else
             {
-                BreakText = "Go off break!";
+                BreakText = "Go on break!";
                 EnableTimers(true);
             }
         }
@@ -114,7 +115,7 @@ namespace App.ViewModels
                     if (location != null)
                     {
                         LatLonCollection.Insert(0, new LatLon { Latitude = location.Latitude.ToString(), Longitude = location.Longitude.ToString() });
-                        Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                        //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                         string loca= Newtonsoft.Json.JsonConvert.SerializeObject(new
                         {
                             uid = id,
@@ -186,8 +187,11 @@ namespace App.ViewModels
         {
             if (i != 1)
                 {
+
                 clientHandler.ServerCertificateCustomValidationCallback += (Sender, cert, chain, sslPolicyErrors) => { return true; };
                 client = new HttpClient(clientHandler);
+
+                client.Timeout = TimeSpan.FromSeconds(1000);
                 Debug.WriteLine("Leave Goku in the Trash " + client.BaseAddress);
                 i = 1;
             }
