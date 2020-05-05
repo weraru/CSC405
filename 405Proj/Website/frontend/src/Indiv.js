@@ -2,9 +2,11 @@ import React from 'react';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 
 
-import EmployeePage from './EmployeePage';
+
+import StickyHeadTable from './EmployeeData';
 
 export default function Indiv(props) {
+    const heading = props.heading;
     return (
       <Modal
         {  ...props} 
@@ -14,11 +16,13 @@ export default function Indiv(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            {heading}
           </Modal.Title>  
         </Modal.Header>
         <Modal.Body>
-            <EmployeePage/>
+            <StickyHeadTable
+            
+            />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={props.onHide}>Close</Button>

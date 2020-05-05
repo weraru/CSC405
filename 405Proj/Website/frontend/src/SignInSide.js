@@ -87,7 +87,7 @@ export default function SignInSide(props) {
   const submitHandler = e => {
     e.preventDefault()
   
-    var myHeaders = new Headers();
+  /*  var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     //myHeaders.append("Content-Type", "application/json");
     
@@ -106,7 +106,8 @@ export default function SignInSide(props) {
       .then(result => 
         {if (Auth.login(() => {props.history.push("/EmployeePage")}, result) == "-1")
         setShowIndiv(true);
-      });
+      });*/
+      Auth.login(() => {props.history.push("/EmployeePage")});
 };
   let IndivClose = () => {
     setShowIndiv(false);

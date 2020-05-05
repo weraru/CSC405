@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactDOM from 'react-dom';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -23,17 +23,16 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Indiv  from './Indiv';
+import Convert from './Convert';
 
 
 function format(name, id, latitude, longitude, date, time){
-  //var place = convert(latitude, longitude);
-  //place.then()
  return {name, id, latitude, longitude, date, time};
 }
 
 function add(data){
   var formattedData = []
-  var i;
+  var i; 
     
   for(i = 0; i<data[0].length; i++) {
     formattedData.push(format(data[0][i],data[1][i],data[2][i],data[3][i],data[4][i],data[5][i] ));
@@ -41,22 +40,8 @@ function add(data){
     return formattedData;
   }
 
-async function convert(latitude, longitude)
-{
-  const KEY = "AIzaSyDHskpHwGLtNYyH6tpbCbRYxFABpUDPTJo";
-      const LAT = parseFloat(latitude);
-      const LNG = parseFloat(longitude);
-      let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${KEY}`;
-      try {
-    const response = await fetch(url);
-    const data = await response.json();
-    let address = data.results[0].formatted_address;
-    return address;
-  }
-  catch (err) {
-    return console.warn(err.message);
-  }
-}
+
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -88,8 +73,8 @@ function stableSort(array, comparator) {
 const headCells = [
   { id: 'Name', numeric: false, disablePadding: true, label: 'Name' },
   { id: 'ID', numeric: false, disablePadding: false, label: 'ID' },
-  { id: 'latitude', numeric: false, disablePadding: false, label: 'Latest Latitude' },
-  { id: 'longitude', numeric: false, disablePadding: false, label: 'Latest Longitude' },
+  { id: 'Where', numeric: false, disablePadding: false, label: 'Last Seen' },
+
 ];
 
 function EnhancedTableHead(props) {
@@ -239,6 +224,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function EnhancedTable() {
+  const [currName, setCurrName] = React.useState('blah');
   const [data, setData] = React.useState([]);
   const [rows, setRows] = React.useState([]);
   const classes = useStyles();
@@ -294,14 +280,13 @@ export default function EnhancedTable() {
 
   const handleRowClick = (event, name) => {
     setShowIndiv(true);
-  
+    setCurrName(name);  
   }
 
   let IndivClose = () => {
     setShowIndiv(false);
   }
    
-
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -391,9 +376,8 @@ export default function EnhancedTable() {
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.id}</TableCell>
-                      <TableCell align="right">{row.latitude}</TableCell>
-                      <TableCell align="right">{row.longitude}</TableCell>
-  
+                      <TableCell align="right">{row.place}</TableCell>
+                      <Convert latitude={row.latitude} longitude={row.longitude}/>
                     </TableRow>
                   );
                 })}
@@ -424,6 +408,7 @@ export default function EnhancedTable() {
     <Indiv 
           show = {showIndiv}
           onHide = {IndivClose} 
+          heading = {currName}
         />
   </>
   );

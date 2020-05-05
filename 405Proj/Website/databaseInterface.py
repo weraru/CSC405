@@ -414,7 +414,7 @@ def datalog():
     Log("in log")
     cursor = None
     conn = None
-    try:
+    try:hooo
         if request.method=="OPTIONS":
             resp=jsonify("0")
             resp.headers.add("Access-Control-Allow-Origin", "*")

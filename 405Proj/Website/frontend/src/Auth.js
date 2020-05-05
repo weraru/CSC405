@@ -5,15 +5,12 @@ class Auth {
 
 
 login(cb, data){
-    if(data == "-1" || data == null || data == "wrong format" ){
+    //if(data == "-1" || data == null || data == "wrong format" ){
         
-        return ("-1");
-    }
-    else
-    {
+    //    return ("-1");
+    //}
         this.authenticated = true;
         cb();
-    }
     
 }
 
