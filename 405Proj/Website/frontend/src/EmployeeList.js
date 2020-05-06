@@ -22,9 +22,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import Indiv  from './Indiv';
-import Convert from './Convert';
 
+import Indiv  from './Indiv';
+import Convert from './Convert';   
+import Map from './Map';
+import * as stuff from "./placeholderInfo.json";
 
 function format(name, id, latitude, longitude, date, time){
  return {name, id, latitude, longitude, date, time};
@@ -60,7 +62,6 @@ function getComparator(order, orderBy) {
 }
 
 function stableSort(array, comparator) {
-  console.log(comparator);
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -234,11 +235,11 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [stuff, setStuff] = React.useState([]);
+  //const [stuff, setStuff] = React.useState([]);
   const [showIndiv, setShowIndiv] = React.useState(false);
 
   React.useEffect(() => {
-    var myHeaders = new Headers();
+    /*var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     //myHeaders.append("Content-Type", "application/json");
     
@@ -255,10 +256,11 @@ export default function EnhancedTable() {
     fetch("https://162.236.218.100:5005/map", requestOptions)
       .then(response => response.json()
       .then(result => 
-        setRows(add(result))));
+        setRows(add(result))));*/
+        setRows(add(stuff.default));
   }, []);
+ 
 
-  console.log(data);
   /*React.useEffect(() => {
     setRows(format(data));
   }, []);*/ 
@@ -330,6 +332,7 @@ export default function EnhancedTable() {
   return (
     <>
     <div className={classes.root}>
+      <Map points= {rows}/>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer  className = {classes.container}>
@@ -410,6 +413,7 @@ export default function EnhancedTable() {
           onHide = {IndivClose} 
           heading = {currName}
         />
+    
   </>
   );
 }

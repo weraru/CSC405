@@ -3,7 +3,7 @@ import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 
 
 
-import StickyHeadTable from './EmployeeData';
+import Map from './Map';
 
 export default function Indiv(props) {
     const heading = props.heading;
@@ -20,7 +20,7 @@ export default function Indiv(props) {
           </Modal.Title>  
         </Modal.Header>
         <Modal.Body>
-            <StickyHeadTable
+            <Map
             
             />
         </Modal.Body>
