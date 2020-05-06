@@ -56,7 +56,7 @@ namespace App.ViewModels
             aTimer.Interval = 1000;
             bTimer = new Timer();
             bTimer.Elapsed += new ElapsedEventHandler(OnTimedHttpCallEvent);
-            bTimer.Interval = 2000;
+            bTimer.Interval = 10000;
             EnableTimers(true);
             id = user.id;
         }
