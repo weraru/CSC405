@@ -53,10 +53,10 @@ namespace App.ViewModels
             LatLonCollection = new ObservableCollection<LatLon>();
             aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedGetLocationEvent);
-            aTimer.Interval = 1000;
+            aTimer.Interval = 10000;
             bTimer = new Timer();
             bTimer.Elapsed += new ElapsedEventHandler(OnTimedHttpCallEvent);
-            bTimer.Interval = 10000;
+            bTimer.Interval = 20000;
             EnableTimers(true);
             id = user.id;
         }

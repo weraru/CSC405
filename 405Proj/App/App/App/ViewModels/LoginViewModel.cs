@@ -21,6 +21,8 @@ namespace App.ViewModels
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private string email = "run";
         public string id = "hi";
+        public int i = 0;
+
         public string Email
         {
             get { return email; }
@@ -48,7 +50,8 @@ private string password = "free";
         }
         public async void OnSubmit()
         {
-           
+            Setup();
+
             string user = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
 
@@ -60,8 +63,6 @@ private string password = "free";
 
             //string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(user);
             //var content = new FormUrlEncodedContent(jsonString);
-            clientHandler.ServerCertificateCustomValidationCallback += (sender, cert, chain, sslPolicyErrors) => { return true; };
-            client = new HttpClient(clientHandler);
             var response = await client.PostAsync("https://162.236.218.100:5005/login", content);
             string result = response.Content.ReadAsStringAsync().Result;
             string hi = "HI";
@@ -90,8 +91,26 @@ private string password = "free";
                App.Current.MainPage = new NavigationPage(new MainPage(U));
             }
         }
-        
+
+        private void Setup()
+        {
+            {
+                if (i != 1)
+                {
+
+                    clientHandler.ServerCertificateCustomValidationCallback += (Sender, cert, chain, sslPolicyErrors) => { return true; };
+                    client = new HttpClient(clientHandler);
+
+                    client.Timeout = TimeSpan.FromSeconds(1000);
+                    Debug.WriteLine("Leave Goku in the Trash " + client.BaseAddress);
+                    i = 1;
+                }
+
+
+            }
+        }
     }
+    
     public  partial class User 
         {
         public string username { get; set; }
@@ -101,5 +120,6 @@ private string password = "free";
 
 
        }
+
         
 }
