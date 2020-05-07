@@ -20,7 +20,6 @@ namespace App.ViewModels
         public ICommand ProfileCommand { protected set; get; }
         public ICommand BreakCommand { protected set; get; }
 
-        public ICommand EmergencyCommand { protected set; get; }
 
 
         HttpClientHandler clientHandler = new HttpClientHandler();
@@ -34,7 +33,7 @@ namespace App.ViewModels
         private Timer aTimer;
         private Timer bTimer;
         private string _BreakText = "Go on break!";
-        private string _EmergencyText = "Emergency";
+    
 
 
         private string id;
@@ -49,7 +48,6 @@ namespace App.ViewModels
             Setup();
             ProfileCommand = new Command(OnProfileClicked);
             BreakCommand = new Command(OnBreakClicked);
-            EmergencyCommand = new Command(OnEmergencyClicked);
             LatLonCollection = new ObservableCollection<LatLon>();
             aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedGetLocationEvent);
@@ -88,19 +86,7 @@ namespace App.ViewModels
             bTimer.Enabled = b;
         }
 
-        private void OnEmergencyClicked(object obj)
-        {
-            if (BreakText != "In Emergency")
-            {
-                BreakText = "In Emergency";
-                EnableTimers(true);
-            }
-            else
-            {
-                BreakText = "Emergency";
-                EnableTimers(true);
-            }
-        }
+
 
         private void OnTimedGetLocationEvent(object sender, ElapsedEventArgs e)
         {
@@ -199,16 +185,6 @@ namespace App.ViewModels
 
         }
 
-
-        public string EmergencyText
-        {
-            get { return _EmergencyText; }
-            set
-            {
-                _EmergencyText = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("EmergencyText"));
-            }
-        }
     }
 
 }

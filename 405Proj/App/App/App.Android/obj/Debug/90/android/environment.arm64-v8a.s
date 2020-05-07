@@ -18,26 +18,19 @@ application_config:
 	.byte	1
 	/* is_a_bundled_app */
 	.byte	0
-	/* broken_exception_transitions */
-	.byte	0
-	/* bound_exception_type */
-	.byte	1
-	/* package_naming_policy */
-	.zero	2
-	.word	3
 	/* environment_variable_count */
-	.word	12
+	.word	10
 	/* system_property_count */
 	.word	0
 	.zero	4
 	/* android_package_name */
 	.xword	.L.str.1
-	.size	application_config, 32
+	.size	application_config, 24
 	.section	.rodata..L.str.2,"aMS",@progbits,1
 	.type	.L.str.2, @object
 .L.str.2:
-	.asciz	"none"
-	.size	.L.str.2, 5
+	.asciz	"0"
+	.size	.L.str.2, 2
 	.section	.data.mono_aot_mode_name,"aw",@progbits
 	.global	mono_aot_mode_name
 mono_aot_mode_name:
@@ -70,7 +63,7 @@ mono_aot_mode_name:
 	.section	.rodata..L.str.8,"aMS",@progbits,1
 	.type	.L.str.8, @object
 .L.str.8:
-	.asciz	"f3bbfacb-4dbf-4e84-aaa2-be1edefaff3e"
+	.asciz	"7ec96260-79d5-4b43-9c8a-9f786ee24e31"
 	.size	.L.str.8, 37
 	.section	.rodata..L.str.9,"aMS",@progbits,1
 	.type	.L.str.9, @object
@@ -92,16 +85,6 @@ mono_aot_mode_name:
 .L.str.12:
 	.asciz	"btls"
 	.size	.L.str.12, 5
-	.section	.rodata..L.str.13,"aMS",@progbits,1
-	.type	.L.str.13, @object
-.L.str.13:
-	.asciz	"__XA_PACKAGE_NAMING_POLICY__"
-	.size	.L.str.13, 29
-	.section	.rodata..L.str.14,"aMS",@progbits,1
-	.type	.L.str.14, @object
-.L.str.14:
-	.asciz	"LowercaseCrc64"
-	.size	.L.str.14, 15
 	.section	.data.app_environment_variables,"aw",@progbits
 	.type	app_environment_variables, @object
 	.p2align	3
@@ -117,9 +100,7 @@ app_environment_variables:
 	.xword	.L.str.10
 	.xword	.L.str.11
 	.xword	.L.str.12
-	.xword	.L.str.13
-	.xword	.L.str.14
-	.size	app_environment_variables, 96
+	.size	app_environment_variables, 80
 	.section	.data.app_system_properties,"aw",@progbits
 	.type	app_system_properties, @object
 	.p2align	3

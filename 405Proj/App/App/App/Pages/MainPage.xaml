@@ -22,17 +22,7 @@
                 CornerRadius="5"
                 WidthRequest="150"
                 HeightRequest="75" />
-        <Button 
-                Text="{Binding EmergencyText}"
-                Command="{Binding EmergencyCommand}"
-                TextColor="Black"
-                BackgroundColor="Red"
-                BorderColor="Black"
-                BorderWidth="5"
-                CornerRadius="5"
-                WidthRequest="150"
-                HeightRequest="75" />
-        
+
         <Label Text="Set Logout Time" TextColor="White" FontSize="Medium"/>
         <Frame BackgroundColor="White"
                BorderColor="Black"
