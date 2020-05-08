@@ -101,9 +101,7 @@
       </Generator>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\logo3.png" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\App\App.csproj">
       <Project>{60A125A6-4A70-4475-9E9F-8588FBF1875F}</Project>
